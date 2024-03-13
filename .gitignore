@@ -2,8 +2,12 @@
 # Project Specific
 ######################
 /src/main/webapp/content/css/main.css
+/src/main/python/**/__pycache__
 /target/classes/static/**
 /src/test/javascript/coverage/
+/dist
+.venv
+/venv
 
 ######################
 # Node
@@ -95,6 +99,7 @@ out/
 *.war
 *.ear
 *.db
+*.lock
 
 ######################
 # Windows
