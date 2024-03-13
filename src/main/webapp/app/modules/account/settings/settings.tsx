@@ -65,6 +65,18 @@ export const SettingsPage = () => {
               data-cy="lastname"
             />
             <ValidatedField
+              name="phone"
+              label="Telefone"
+              id="phone"
+              placeholder="Seu telefone"
+              validate={{
+                required: { value: true, message: 'Your last name is required.' },
+                minLength: { value: 1, message: 'Your last name is required to be at least 1 character' },
+                maxLength: { value: 50, message: 'Your last name cannot be longer than 50 characters' },
+              }}
+              data-cy="phone"
+            />
+            <ValidatedField
               name="email"
               label="Email"
               placeholder={'Your email'}
