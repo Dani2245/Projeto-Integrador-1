@@ -76,7 +76,7 @@ export const SettingsPage = () => {
               }}
               data-cy="phone"
             /> */}
-            <ValidatedField
+            {/* <ValidatedField
               name="phone"
               label="Telefone"
               id="phone"
@@ -87,7 +87,7 @@ export const SettingsPage = () => {
                 maxLength: { value: 50, message: 'Your last name cannot be longer than 50 characters' },
               }}
               data-cy="phone"
-            />
+            /> */}
             <ValidatedField
               name="email"
               label="Email"

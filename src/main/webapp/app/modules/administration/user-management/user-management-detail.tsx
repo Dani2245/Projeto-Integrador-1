@@ -36,7 +36,7 @@ export const UserManagementDetail = (props: RouteComponentProps<{ login: string 
           <dd>{user.lastName}</dd>
           <dt>Email</dt>
           <dd>{user.email}</dd>
-          <dt>Telefone</dt>
+          {/* <dt>Telefone</dt> */}
           {/* <dd>{user.phone}</dd> */}
           <dt>Criado Por</dt>
           <dd>{user.createdBy}</dd>
