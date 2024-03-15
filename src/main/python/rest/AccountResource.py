@@ -53,6 +53,9 @@ class ManagedUserAccountRegister(Resource):
         user_email = User.get_by_email(managed_user["email"])
         if user_email is not None:
             return {"message": "O email já está em uso"}, 400
+        # user_phone = User.get_by_phone(managed_user["phone"])
+        # if user_phone is not None:
+        #     return {"message": "O número de telefone já está em uso"}, 400
         if not is_password_length_valid(managed_user["password"]):
             return {"message": "Comprimento de senha inválido"}, 400
         # Salt the password and then encrypt it using bcrypt

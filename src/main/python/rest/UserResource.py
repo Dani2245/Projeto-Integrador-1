@@ -105,7 +105,8 @@ class UserResourceList(Resource):
             updated_user = user_schema.load(user_json, instance=users)
         except ValidationError as err:
             return {"message": json.dumps(err.messages)}, 400
-        updated_user.set_phone(user_json["phone"])
+        # print(user_json["phone"])
+        # updated_user.set_phone(user_json["phone"])
         updated_user.set_last_modified_by(login)
         updated_user.set_last_modified_date(datetime.now(timezone.utc))
         try:
