@@ -11,9 +11,9 @@ export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
   return (
-    <Row>
+    <Row className="pink-background">
       <Col md="3" className="pad">
-        <span className="hipster rounded" />
+        <span className="logo rounded" />
       </Col>
       <Col md="9">
         <h2>Charm</h2>
