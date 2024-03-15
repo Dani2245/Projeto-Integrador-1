@@ -15,6 +15,7 @@ class User(db.Model):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     email = db.Column(db.String(191), unique=True, nullable=False)
+    # phone = db.Column(db.String(20), unique=True, nullable=False)
     activated = db.Column(db.Boolean, nullable=False, default=False)
     lang_key = db.Column(db.String(10), nullable=False, default='en')
     image_url = db.Column(db.String(256))
@@ -67,6 +68,12 @@ class User(db.Model):
 
     def get_email(self):
         return self.email
+
+    # def set_phone(self, _phone):
+    #     self.phone = _phone
+
+    # def get_phone(self):
+    #     return self.phone
 
     def set_activated(self, _activated):
         self.activated = _activated
@@ -145,6 +152,13 @@ class User(db.Model):
             return user
         return None
 
+    # @classmethod
+    # def get_by_phone(cls, phone) -> "User":
+    #     user = cls.query.filter_by(email=phone).first()
+    #     if user is not None:
+    #         return user
+    #     return None
+
     @classmethod
     def get_by_activation_key(cls, activation_key) -> "User":
         user = cls.query.filter_by(activation_key=activation_key).first()
@@ -183,4 +197,3 @@ class User(db.Model):
     def delete_from_db(self) -> None:
         db.session.delete(self)
         db.session.commit()
-        

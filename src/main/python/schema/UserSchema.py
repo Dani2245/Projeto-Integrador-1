@@ -12,6 +12,7 @@ class PublicUserSchema(ma.SQLAlchemyAutoSchema):
         exclude = (
             "first_name",
             "last_name",
+            # "phone",
             "password_hash",
             "activated",
             "lang_key",
@@ -43,6 +44,7 @@ class AdminUserSchema(ma.SQLAlchemyAutoSchema):
             "reset_date",
             "first_name",
             "last_name",
+            # "phone",
             "image_url",
             "lang_key",
             "created_by",
@@ -55,6 +57,7 @@ class AdminUserSchema(ma.SQLAlchemyAutoSchema):
 
     firstName = auto_field("first_name")
     lastName = auto_field("last_name")
+    # phone = auto_field("phone")
     imageUrl = auto_field("image_url")
     langKey = auto_field("lang_key")
     createdBy = auto_field("created_by")
@@ -74,6 +77,7 @@ class ManagedUserSchema(ma.SQLAlchemyAutoSchema):
             "lang_key",
             "first_name",
             "last_name",
+            # "phone",
             "activated",
             "image_url",
             "activation_key",
@@ -101,6 +105,7 @@ class KeyAndPasswordSchema(ma.SQLAlchemyAutoSchema):
             "reset_date",
             "first_name",
             "last_name",
+            # "phone",
             "image_url",
             "lang_key",
             "created_by",
@@ -127,6 +132,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
             "reset_date",
             "first_name",
             "last_name",
+            # "phone",
             "image_url",
             "lang_key",
             "created_by",
@@ -139,6 +145,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
     firstName = auto_field("first_name")
     lastName = auto_field("last_name")
+    # phone = auto_field("phone")
     imageUrl = auto_field("image_url")
     langKey = auto_field("lang_key")
     createdBy = auto_field("created_by")

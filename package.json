@@ -23,6 +23,7 @@
     "pyhipster": "concurrently \"npm:start\" \"npm:pyhipster:sqlite:start\" npm:pyhipster:backend:start",
     "pyhipster:backend:start": "poetry run task run_app",
     "pyhipster:build": "poetry build",
+    "pyhipster:dependencies:install": "poetry install",
     "pyhipster:cleanup": "rimraf ./dist",
     "pyhipster:sqlite:start": "poetry run sqlite_web --port 8092 --url-prefix \"/sqlite-console\" --no-browser pyhipster.db3",
     "start": "npm run webapp:dev --",
@@ -102,7 +103,7 @@
     "eslint-webpack-plugin": "3.1.1",
     "fork-ts-checker-webpack-plugin": "7.2.3",
     "html-webpack-plugin": "5.5.0",
-    "husky": "7.0.4",
+    "husky": "^7.0.4",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
     "jest-junit": "13.1.0",
@@ -146,5 +147,9 @@
   "jestSonar": {
     "reportPath": "target/test-results/jest",
     "reportFile": "TESTS-results-sonar.xml"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
