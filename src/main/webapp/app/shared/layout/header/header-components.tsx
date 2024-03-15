@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img src="content/images/logo-pyhipster.png" alt="Logo" />
+    <img src="content/images/charm_logo.png" alt="Logo" />
   </div>
 );
 
