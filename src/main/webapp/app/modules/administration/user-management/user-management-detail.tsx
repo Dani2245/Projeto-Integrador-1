@@ -21,34 +21,36 @@ export const UserManagementDetail = (props: RouteComponentProps<{ login: string 
   return (
     <div>
       <h2>
-        User [<strong>{user.login}</strong>]
+        Usuário [<strong>{user.login}</strong>]
       </h2>
       <Row size="md">
         <dl className="jh-entity-details">
           <dt>Login</dt>
           <dd>
             <span>{user.login}</span>&nbsp;
-            {user.activated ? <Badge color="success">Activated</Badge> : <Badge color="danger">Deactivated</Badge>}
+            {user.activated ? <Badge color="success">Ativado</Badge> : <Badge color="danger">Desativado</Badge>}
           </dd>
-          <dt>First Name</dt>
+          <dt>Primeiro Nome</dt>
           <dd>{user.firstName}</dd>
-          <dt>Last Name</dt>
+          <dt>Sobrenome</dt>
           <dd>{user.lastName}</dd>
           <dt>Email</dt>
           <dd>{user.email}</dd>
-          <dt>Created By</dt>
+          <dt>Telefone</dt>
+          {/* <dd>{user.phone}</dd> */}
+          <dt>Criado Por</dt>
           <dd>{user.createdBy}</dd>
-          <dt>Created Date</dt>
+          <dt>Data de Criação</dt>
           <dd>{user.createdDate ? <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid /> : null}</dd>
-          <dt>Last Modified By</dt>
+          <dt>Última Modificação Por</dt>
           <dd>{user.lastModifiedBy}</dd>
-          <dt>Last Modified Date</dt>
+          <dt>Data da Última Modificação</dt>
           <dd>
             {user.lastModifiedDate ? (
               <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
             ) : null}
           </dd>
-          <dt>Profiles</dt>
+          <dt>Perfis</dt>
           <dd>
             <ul className="list-unstyled">
               {user.authorities
@@ -63,7 +65,7 @@ export const UserManagementDetail = (props: RouteComponentProps<{ login: string 
         </dl>
       </Row>
       <Button tag={Link} to="/admin/user-management" replace color="info">
-        <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
+        <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Voltar</span>
       </Button>
     </div>
   );

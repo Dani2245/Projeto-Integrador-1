@@ -22,13 +22,13 @@ const Header = (props: IHeaderProps) => {
   const renderDevRibbon = () =>
     props.isInProduction === false ? (
       <div className="ribbon dev">
-        <a href="">Development</a>
+        <a href="">Desenvolvimento</a>
       </div>
     ) : null;
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
+  /* jhipster-needle-add-element-to-menu - O JHipster adicionará novos itens de menu aqui */
 
   return (
     <div id="app-header">
