@@ -46,13 +46,13 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h1>Create or edit a User</h1>
+          <h1>Criar ou editar um usuário</h1>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>Carregando...</p>
           ) : (
             <ValidatedForm onSubmit={saveUser} defaultValues={user}>
               {user.id ? <ValidatedField type="text" name="id" required readOnly label="ID" validate={{ required: true }} /> : null}
@@ -63,68 +63,91 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
                 validate={{
                   required: {
                     value: true,
-                    message: 'Your username is required.',
+                    message: 'Seu nome de usuário é obrigatório.',
                   },
                   pattern: {
                     value: /^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$/,
-                    message: 'Your username is invalid.',
+                    message: 'Seu nome de usuário é inválido.',
                   },
                   minLength: {
                     value: 1,
-                    message: 'Your username is required to be at least 1 character.',
+                    message: 'Seu nome de usuário deve ter pelo menos 1 caractere.',
                   },
                   maxLength: {
                     value: 50,
-                    message: 'Your username cannot be longer than 50 characters.',
+                    message: 'Seu nome de usuário não pode ter mais de 50 caracteres.',
                   },
                 }}
               />
               <ValidatedField
                 type="text"
                 name="firstName"
-                label="First name"
+                label="Nome"
                 validate={{
                   maxLength: {
                     value: 50,
-                    message: 'This field cannot be longer than 50 characters.',
+                    message: 'Este campo não pode ter mais de 50 caracteres.',
                   },
                 }}
               />
               <ValidatedField
                 type="text"
                 name="lastName"
-                label="Last name"
+                label="Sobrenome"
                 validate={{
                   maxLength: {
                     value: 50,
-                    message: 'This field cannot be longer than 50 characters.',
+                    message: 'Este campo não pode ter mais de 50 caracteres.',
                   },
                 }}
               />
-              <FormText>This field cannot be longer than 50 characters.</FormText>
+              <FormText>Este campo não pode ter mais de 50 caracteres.</FormText>
               <ValidatedField
                 name="email"
                 label="Email"
-                placeholder={'Your email'}
+                placeholder={'Seu email'}
                 type="email"
                 validate={{
                   required: {
                     value: true,
-                    message: 'Your email is required.',
+                    message: 'Seu email é obrigatório.',
                   },
                   minLength: {
                     value: 5,
-                    message: 'Your email is required to be at least 5 characters.',
+                    message: 'Seu email deve ter pelo menos 5 caracteres.',
                   },
                   maxLength: {
                     value: 254,
-                    message: 'Your email cannot be longer than 50 characters.',
+                    message: 'Seu email não pode ter mais de 50 caracteres.',
                   },
-                  validate: v => isEmail(v) || 'Your email is invalid.',
+                  validate: v => isEmail(v) || 'Seu email é inválido.',
                 }}
               />
-              <ValidatedField type="checkbox" name="activated" check value={true} disabled={!user.id} label="Activated" />
-              <ValidatedField type="select" name="authorities" multiple label="Profiles">
+              {/* <ValidatedField
+                name="phone"
+                label="Número de telefone"
+                placeholder={'Seu número de telefone'}
+                validate={{
+                  required: {
+                    value: true,
+                    message: 'Seu número de telefone é obrigatório.',
+                  },
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: 'Seu número de telefone é inválido.',
+                  },
+                  minLength: {
+                    value: 10,
+                    message: 'Seu número de telefone deve ter pelo menos 10 dígitos. Inclua o DDD.',
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: 'Seu número de telefone não pode ter mais de 15 dígitos.',
+                  },
+                }}
+              ></ValidatedField> */}
+              <ValidatedField type="checkbox" name="activated" check value={true} disabled={!user.id} label="Ativado" />
+              <ValidatedField type="select" name="authorities" multiple label="Perfis">
                 {authorities.map(role => (
                   <option value={role} key={role}>
                     {role}
@@ -134,12 +157,12 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
               <Button tag={Link} to="/admin/user-management" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
-                <span className="d-none d-md-inline">Back</span>
+                <span className="d-none d-md-inline">Voltar</span>
               </Button>
               &nbsp;
               <Button color="primary" type="submit" disabled={isInvalid || updating}>
                 <FontAwesomeIcon icon="save" />
-                &nbsp; Save
+                &nbsp; Salvar
               </Button>
             </ValidatedForm>
           )}

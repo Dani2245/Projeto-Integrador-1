@@ -10,29 +10,29 @@ export const PasswordStrengthBar = ({ password }: IPasswordStrengthBarProps) => 
   const colors = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
 
   const measureStrength = (p: string): number => {
-    let force = 0;
+    let forca = 0;
     const regex = /[$-/:-?{-~!"^_`[\]]/g;
     const flags = {
-      lowerLetters: /[a-z]+/.test(p),
-      upperLetters: /[A-Z]+/.test(p),
-      numbers: /\d+/.test(p),
-      symbols: regex.test(p),
+      letrasMinusculas: /[a-z]+/.test(p),
+      letrasMaiusculas: /[A-Z]+/.test(p),
+      numeros: /\d+/.test(p),
+      simbolos: regex.test(p),
     };
 
-    const passedMatches = Object.values(flags).filter((isMatchedFlag: boolean) => !!isMatchedFlag).length;
+    const matchesPassados = Object.values(flags).filter((isMatchedFlag: boolean) => !!isMatchedFlag).length;
 
-    force += 2 * p.length + (p.length >= 10 ? 1 : 0);
-    force += passedMatches * 10;
+    forca += 2 * p.length + (p.length >= 10 ? 1 : 0);
+    forca += matchesPassados * 10;
 
-    // penalty (short password)
-    force = p.length <= 6 ? Math.min(force, 10) : force;
+    // penalidade (senha curta)
+    forca = p.length <= 6 ? Math.min(forca, 10) : forca;
 
-    // penalty (poor variety of characters)
-    force = passedMatches === 1 ? Math.min(force, 10) : force;
-    force = passedMatches === 2 ? Math.min(force, 20) : force;
-    force = passedMatches === 3 ? Math.min(force, 40) : force;
+    // penalidade (pouca variedade de caracteres)
+    forca = matchesPassados === 1 ? Math.min(forca, 10) : forca;
+    forca = matchesPassados === 2 ? Math.min(forca, 20) : forca;
+    forca = matchesPassados === 3 ? Math.min(forca, 40) : forca;
 
-    return force;
+    return forca;
   };
 
   const getColor = (s: number): any => {
@@ -51,21 +51,21 @@ export const PasswordStrengthBar = ({ password }: IPasswordStrengthBarProps) => 
     return { idx: idx + 1, col: colors[idx] };
   };
 
-  const getPoints = force => {
+  const getPoints = forca => {
     const pts = [] as any[];
     for (let i = 0; i < 5; i++) {
-      pts.push(<li key={i} className="point" style={i < force.idx ? { backgroundColor: force.col } : { backgroundColor: '#DDD' }} />);
+      pts.push(<li key={i} className="point" style={i < forca.idx ? { backgroundColor: forca.col } : { backgroundColor: '#DDD' }} />);
     }
     return pts;
   };
 
-  const strength = getColor(measureStrength(password));
-  const points = getPoints(strength);
+  const forcaSenha = getColor(measureStrength(password));
+  const pontos = getPoints(forcaSenha);
 
   return (
     <div id="strength">
-      <small>Password strength:</small>
-      <ul id="strengthBar">{points}</ul>
+      <small>Força da senha:</small>
+      <ul id="strengthBar">{pontos}</ul>
     </div>
   );
 };

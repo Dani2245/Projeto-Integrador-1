@@ -16,66 +16,66 @@ export const Home = () => {
         <span className="hipster rounded" />
       </Col>
       <Col md="9">
-        <h2>Welcome, Python Hipster!</h2>
-        <p className="lead">This is your homepage</p>
+        <h2>Charm</h2>
+        <p className="lead">Inovação e Beleza</p>
         {account?.login ? (
           <div>
-            <Alert color="success">You are logged in as user {account.login}.</Alert>
+            <Alert color="success">Você está logado como usuário {account.login}.</Alert>
           </div>
         ) : (
           <div>
             <Alert color="warning">
-              If you want to
+              Se você deseja
               <span>&nbsp;</span>
               <Link to="/login" className="alert-link">
                 {' '}
-                sign in
+                entrar
               </Link>
-              , you can try the default accounts:
-              <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-              <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
+              , você pode usar as contas padrão:
+              <br />- Administrador (login=&quot;admin&quot; e senha=&quot;admin&quot;)
+              <br />- Usuário (login=&quot;user&quot; e senha=&quot;user&quot;).
             </Alert>
 
             <Alert color="warning">
-              You do not have an account yet?&nbsp;
+              Ainda não tem uma conta?&nbsp;
               <Link to="/account/register" className="alert-link">
-                Register a new account
+                Registre uma nova conta
               </Link>
             </Alert>
           </div>
         )}
-        <p>If you have any question on PyHipster:</p>
+        <p>Se você tiver alguma dúvida sobre o PyHipster:</p>
 
         <ul>
           <li>
             <a href="https://github.com/pyhipster/generator-pyhipster" target="_blank" rel="noopener noreferrer">
-              PyHipster homepage
+              Página inicial do PyHipster
             </a>
           </li>
           <li>
             <a href="https://stackoverflow.com/tags/pyhipster/info" target="_blank" rel="noopener noreferrer">
-              PyHipster on Stack Overflow
+              PyHipster no Stack Overflow
             </a>
           </li>
           <li>
             <a href="https://github.com/pyhipster/generator-pyhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              PyHipster bug tracker
+              Rastreador de bugs do PyHipster
             </a>
           </li>
           <li>
             <a href="https://twitter.com/py_hipster" target="_blank" rel="noopener noreferrer">
-              follow @py_hipster on Twitter
+              siga @py_hipster no Twitter
             </a>
           </li>
           <li>
             <a href="https://techhub.social/@pyhipster" target="_blank" rel="noopener noreferrer">
-              Follow @pyhipster on Mastodon
+              Siga @pyhipster no Mastodon
             </a>
           </li>
         </ul>
 
         <p>
-          If you like PyHipster, do not forget to give us a star on{' '}
+          Se você gosta do PyHipster, não se esqueça de nos dar uma estrela no{' '}
           <a href="https://github.com/pyhipster/generator-pyhipster" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
