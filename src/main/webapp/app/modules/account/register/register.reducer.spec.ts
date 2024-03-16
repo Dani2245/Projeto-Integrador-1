@@ -2,10 +2,9 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
-
 import register, { handleRegister, reset } from './register.reducer';
 
-describe('Creating account tests', () => {
+describe('Testes de criação de conta', () => {
   const initialState = {
     loading: false,
     registrationSuccess: false,
@@ -14,20 +13,20 @@ describe('Creating account tests', () => {
     successMessage: null,
   };
 
-  it('should return the initial state', () => {
+  it('deve retornar o estado inicial', () => {
     expect(register(undefined, { type: '' })).toEqual({
       ...initialState,
     });
   });
 
-  it('should detect a request', () => {
+  it('deve detectar uma requisição', () => {
     expect(register(undefined, { type: handleRegister.pending.type })).toEqual({
       ...initialState,
       loading: true,
     });
   });
 
-  it('should handle RESET', () => {
+  it('deve lidar com o RESET', () => {
     expect(
       register({ loading: true, registrationSuccess: true, registrationFailure: true, errorMessage: '', successMessage: '' }, reset())
     ).toEqual({
@@ -35,7 +34,7 @@ describe('Creating account tests', () => {
     });
   });
 
-  it('should handle CREATE_ACCOUNT success', () => {
+  it('deve lidar com o sucesso do CREATE_ACCOUNT', () => {
     expect(
       register(undefined, {
         type: handleRegister.fulfilled.type,
@@ -44,11 +43,11 @@ describe('Creating account tests', () => {
     ).toEqual({
       ...initialState,
       registrationSuccess: true,
-      successMessage: 'Registration saved! Please check your email for confirmation.',
+      successMessage: 'Registro salvo! Por favor, verifique seu e-mail para confirmação.',
     });
   });
 
-  it('should handle CREATE_ACCOUNT failure', () => {
+  it('deve lidar com a falha do CREATE_ACCOUNT', () => {
     const error = { message: 'fake error' };
     expect(
       register(undefined, {
@@ -62,17 +61,17 @@ describe('Creating account tests', () => {
     });
   });
 
-  describe('Actions', () => {
+  describe('Ações', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = { value: 'qualquer coisa' };
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});
       axios.post = sinon.stub().returns(Promise.resolve(resolvedObject));
     });
 
-    it('dispatches CREATE_ACCOUNT_PENDING and CREATE_ACCOUNT_FULFILLED actions', async () => {
+    it('despacha as ações CREATE_ACCOUNT_PENDING e CREATE_ACCOUNT_FULFILLED', async () => {
       const expectedActions = [
         {
           type: handleRegister.pending.type,
@@ -82,11 +81,15 @@ describe('Creating account tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(handleRegister({ login: '', email: '', password: '' }));
+      await store.dispatch(handleRegister({ login: '',
+      email: '',
+      // phone: '', 
+      password: ''
+    }));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
     });
-    it('dispatches RESET actions', async () => {
+    it('despacha a ação RESET', async () => {
       await store.dispatch(reset());
       expect(store.getActions()[0]).toMatchObject(reset());
     });

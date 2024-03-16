@@ -1,10 +1,14 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
-.hipster {
+.pink-background {
+  background-color: #E5BBBE;
+}
+
+.logo {
   display: inline-block;
   width: 100%;
   height: 497px;
-  background: url('../../../content/images/jhipster_family_member_2.svg') no-repeat center top;
+  background: url('../../../content/images/charm_submarca.png') no-repeat center top;
   background-size: contain;
 }

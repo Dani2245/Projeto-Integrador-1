@@ -7,9 +7,9 @@ import { NavDropdown } from './menu-components';
 const adminMenuItems = () => (
   <>
     <MenuItem icon="users" to="/admin/user-management">
-      User management
+      Gerenciamento de usuários
     </MenuItem>
-    {/* jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here */}
+    {/* jhipster-needle-add-element-to-admin-menu - O JHipster adicionará entidades ao menu de administração aqui */}
   </>
 );
 
@@ -21,12 +21,12 @@ const openAPIItem = () => (
 
 const databaseItem = () => (
   <DropdownItem tag="a" href="/sqlite-console" target="_tab">
-    <FontAwesomeIcon icon="database" fixedWidth /> Database
+    <FontAwesomeIcon icon="database" fixedWidth /> Banco de dados
   </DropdownItem>
 );
 
 export const AdminMenu = ({ showOpenAPI, showDatabase }) => (
-  <NavDropdown icon="users-cog" name="Administration" id="admin-menu" data-cy="adminMenu">
+  <NavDropdown icon="users-cog" name={<span style={{ color: 'white' }}>Administração</span>} id="admin-menu" data-cy="adminMenu">
     {adminMenuItems()}
     {showOpenAPI && openAPIItem()}
 

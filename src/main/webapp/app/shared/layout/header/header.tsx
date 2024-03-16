@@ -22,25 +22,25 @@ const Header = (props: IHeaderProps) => {
   const renderDevRibbon = () =>
     props.isInProduction === false ? (
       <div className="ribbon dev">
-        <a href="">Development</a>
+        <a href="">Desenvolvimento</a>
       </div>
     ) : null;
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
+  /* jhipster-needle-add-element-to-menu - O JHipster adicionará novos itens de menu aqui */
 
   return (
     <div id="app-header">
       {renderDevRibbon()}
       <LoadingBar className="loading-bar" />
-      <Navbar data-cy="navbar" light expand="md" fixed="top" className="bg-light">
+      <Navbar data-cy="navbar" light expand="md" fixed="top">
         <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
         <Brand />
         <Collapse isOpen={menuOpen} navbar>
           <Nav id="header-tabs" className="ms-auto" navbar>
             <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
+            {/* {props.isAuthenticated && <EntitiesMenu />} */}
             {props.isAuthenticated && props.isAdmin && (
               <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
             )}

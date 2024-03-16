@@ -21,7 +21,7 @@ export const PrivateRouteComponent = ({ component: Component, hasAnyAuthorities 
       </ErrorBoundary>
     ) : (
       <div className="insufficient-authority">
-        <div className="alert alert-danger">You are not authorized to access this page.</div>
+        <div className="alert alert-danger">Você não está autorizado a acessar esta página.</div>
       </div>
     );
 
@@ -43,7 +43,7 @@ export const PrivateRouteComponent = ({ component: Component, hasAnyAuthorities 
     }
   };
 
-  if (!Component) throw new Error(`A component needs to be specified for private route for path ${(rest as any).path}`);
+  if (!Component) throw new Error(`Um componente precisa ser especificado para a rota privada para o caminho ${(rest as any).path}`);
 
   return <Route {...rest} render={renderRedirect} />;
 };
@@ -59,8 +59,8 @@ export const hasAnyAuthority = (authorities: string[], hasAnyAuthorities: string
 };
 
 /**
- * A route wrapped in an authentication check so that routing happens only when you are authenticated.
- * Accepts same props as React router Route.
- * The route also checks for authorization if hasAnyAuthorities is specified.
+ * Uma rota envolta em uma verificação de autenticação para que o roteamento ocorra apenas quando você estiver autenticado.
+ * Aceita as mesmas props que a rota do React router.
+ * A rota também verifica a autorização se hasAnyAuthorities for especificado.
  */
 export default PrivateRouteComponent;
