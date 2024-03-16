@@ -13,6 +13,8 @@ def load_fake_data(app):
             {"table": "jhi_user", "file": "user.csv", "file_location": default_fake_data},
             {"table": "jhi_authority", "file": "authority.csv", "file_location": default_fake_data},
             {"table": "jhi_user_authority", "file": "user_authority.csv", "file_location": default_fake_data},
+            {"table": "Servico", "file": "Servico.csv", "file_location": user_fake_data},
+            {"table": "Agendamento", "file": "Agendamento.csv", "file_location": user_fake_data},
             # pyhipster-needle-user-defined-model-fake-data
         ]
 
