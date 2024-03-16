@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20240315223702",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "servico",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preco",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "duracao",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Servico",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "agendamento",
+      "otherEntityRelationshipName": "servico",
+      "ownerSide": false,
+      "relationshipName": "agendamento",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

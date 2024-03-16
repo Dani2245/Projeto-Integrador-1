@@ -1,0 +1,16 @@
+id;nome;descricao;categoria;preco;duracao
+1;Progressiva s/ formol;Alisamento sem uso de formol para um liso duradouro;Alisamento;200;60
+2;Progressiva c/ formol;Alisamento com formol para um efeito liso perfeito;Alisamento;310;60
+3;Botox;Tratamento redutor de volume que rejuvenesce os fios;Alisamento;155;60
+4;Raiz progressiva;Retoque na raiz para manter o cabelo liso e uniforme;Alisamento;100;60
+5;Raiz botox;Retoque de botox na raiz para revitalizar o cabelo;Alisamento;100;60
+6;Coloração;Coloração completa para transformar e realçar a beleza dos fios;Coloração;95;60
+7;Coloração raiz;Retoque de cor na raiz para manter a uniformidade da coloração;Coloração;60;60
+8;Luzes;Clareamento de mechas para um visual iluminado e moderno;Coloração;255;60
+9;Ombrehair;Técnica de clareamento gradativo para um efeito praiano;Coloração;250;60
+10;Moreno iluminado;Iluminação sutil para morenas, realçando a cor natural;Coloração;250;60
+11;Corte;Corte personalizado para realçar o estilo e a forma do rosto;Tratamento;80;60
+12;Hidratação;Tratamento profundo para nutrir e hidratar os cabelos;Tratamento;65;60
+13;Nutrição;Tratamento para fortalecer e devolver os nutrientes essenciais;Tratamento;155;60
+14;Ombrehair;Tratamento de clareamento gradativo para um efeito natural;Tratamento;150;60
+15;Moreno iluminado;Tratamento para iluminar cabelos escuros com sutileza;Tratamento;100;60
