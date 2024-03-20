@@ -11,6 +11,13 @@
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="content/css/loading.css" />
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
+    
+    <!-- criação de tag para css-->
+    <style>
+    .botaoWhats{position: fixed ;botton: 30px; right: 30px; z-index: 9999;}
+    </style>
+    <!-- criação de tag para css-->  
+    
   </head>
   <body>
     <!--[if lt IE 9]>
@@ -98,6 +105,14 @@
         </div>
       </div>
     </div>
+    
+    <!--incio da classe e do link para encaminhamento ao whatsapp-->
+    <div class = "botaoWhats">
+      <a href = "https://wa.me/55XXXXXXXXXXX" target = "_blank">
+        <img src = "whatsapp_icone.png" width="75" alt="Fale conosco pelo whatsapp" title="Fale conosco pelo whatsapp" />
+      </a>
+    </div>    
+         
     <noscript>
       <h1>You must enable JavaScript to view this page.</h1>
     </noscript>
