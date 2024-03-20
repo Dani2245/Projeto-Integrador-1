@@ -2,7 +2,7 @@
 projeto integrador UNIVESP- criação de um framework web agendamento de um salão 
 
 ## Pré-requisitos
-Python 3.10
+Python 3.10 ou 3.11
 Poetry
 PIP
 Git
@@ -11,8 +11,8 @@ Git
 
 Este guia assume que você está utilizando o Windows como sistema operacional.
 
-### Instalação do Python 3.10
-Primeiramente certifique de que a sua versão de Python é a 3.10.X
+### Instalação do Python 3.10 ou 3.11
+Primeiramente certifique de que a sua versão de Python é a 3.10.X ou 3.11.X
 ```python --version```
 
 1. Baixe o instalador do Python 3.10 do site oficial [python.org](https://www.python.org/downloads/release/python-3100/).
@@ -35,6 +35,9 @@ Com o Poetry instalado, você pode instalar as dependências do projeto.
 2. Execute o comando abaixo para instalar as dependências:
 
 ```poetry install```
+
+```npm install```
+
 
 Agora você deve ter todas as dependências necessárias instaladas e está pronto para começar a trabalhar no projeto!
 
