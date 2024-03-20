@@ -28,16 +28,16 @@ export const UserManagementDeleteDialog = (props: RouteComponentProps<{ login: s
 
   return (
     <Modal isOpen toggle={handleClose}>
-      <ModalHeader toggle={handleClose}>Confirm delete operation</ModalHeader>
-      <ModalBody>Are you sure you want to delete this User?</ModalBody>
+      <ModalHeader toggle={handleClose}>Confirmar operação de exclusão</ModalHeader>
+      <ModalBody>Tem certeza de que deseja excluir este usuário?</ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={handleClose}>
           <FontAwesomeIcon icon="ban" />
-          &nbsp; Cancel
+          &nbsp; Cancelar
         </Button>
         <Button color="danger" onClick={confirmDelete}>
           <FontAwesomeIcon icon="trash" />
-          &nbsp; Delete
+          &nbsp; Excluir
         </Button>
       </ModalFooter>
     </Modal>

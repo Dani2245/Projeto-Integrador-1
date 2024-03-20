@@ -38,47 +38,71 @@ export const SettingsPage = () => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="settings-title">User settings for {account.login}</h2>
+          <h2 id="settings-title">Configurações do usuário para {account.login}</h2>
           <ValidatedForm id="settings-form" onSubmit={handleValidSubmit} defaultValues={account}>
             <ValidatedField
               name="firstName"
-              label="First Name"
+              label="Primeiro Nome"
               id="firstName"
-              placeholder="Your first name"
+              placeholder="Seu primeiro nome"
               validate={{
-                required: { value: true, message: 'Your first name is required.' },
-                minLength: { value: 1, message: 'Your first name is required to be at least 1 character' },
-                maxLength: { value: 50, message: 'Your first name cannot be longer than 50 characters' },
+                required: { value: true, message: 'Seu primeiro nome é obrigatório.' },
+                minLength: { value: 1, message: 'Seu primeiro nome deve ter pelo menos 1 caractere.' },
+                maxLength: { value: 50, message: 'Seu primeiro nome não pode ter mais de 50 caracteres.' },
               }}
               data-cy="firstname"
             />
             <ValidatedField
               name="lastName"
-              label="Last Name"
+              label="Sobrenome"
               id="lastName"
-              placeholder="Your last name"
+              placeholder="Seu sobrenome"
+              validate={{
+                required: { value: true, message: 'Seu sobrenome é obrigatório.' },
+                minLength: { value: 1, message: 'Seu sobrenome deve ter pelo menos 1 caractere.' },
+                maxLength: { value: 50, message: 'Seu sobrenome não pode ter mais de 50 caracteres.' },
+              }}
+              data-cy="lastname"
+            />
+            {/* <ValidatedField
+              name="phone"
+              label="Telefone"
+              id="phone"
+              placeholder="Seu telefone"
+              validate={{
+                required: { value: true, message: 'Seu telefone é obrigatório.' },
+                minLength: { value: 1, message: 'Seu telefone deve ter pelo menos 1 caractere.' },
+                maxLength: { value: 50, message: 'Seu telefone não pode ter mais de 50 caracteres.' },
+              }}
+              data-cy="phone"
+            /> */}
+            {/* <ValidatedField
+              name="phone"
+              label="Telefone"
+              id="phone"
+              placeholder="Seu telefone"
               validate={{
                 required: { value: true, message: 'Your last name is required.' },
                 minLength: { value: 1, message: 'Your last name is required to be at least 1 character' },
                 maxLength: { value: 50, message: 'Your last name cannot be longer than 50 characters' },
               }}
-              data-cy="lastname"
-            />
+              data-cy="phone"
+            /> */}
             <ValidatedField
               name="email"
               label="Email"
-              placeholder={'Your email'}
+              placeholder={'Seu email'}
               type="email"
               validate={{
-                required: { value: true, message: 'Your email is required.' },
-                minLength: { value: 5, message: 'Your email is required to be at least 5 characters.' },
-                maxLength: { value: 254, message: 'Your email cannot be longer than 50 characters.' },
-                validate: v => isEmail(v) || 'Your email is invalid.',
+                required: { value: true, message: 'Seu email é obrigatório.' },
+                minLength: { value: 5, message: 'Seu email deve ter pelo menos 5 caracteres.' },
+                maxLength: { value: 254, message: 'Seu email não pode ter mais de 50 caracteres.' },
+                validate: v => isEmail(v) || 'Seu email é inválido.',
               }}
               data-cy="email"
             />
             <Button color="primary" type="submit" data-cy="submit">
-              Save
+              Salvar
             </Button>
           </ValidatedForm>
         </Col>

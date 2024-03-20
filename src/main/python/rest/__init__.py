@@ -6,6 +6,8 @@ from .AccountResource import account_register_ns, account_authenticate_ns, accou
 from .UserResource import user_list_ns
 from .LogoutResource import logout_ns
 from .AppManagment import app_management_ns
+from .ServicoResource import servicos_list_ns
+from .AgendamentoResource import agendamentos_list_ns
 # pyhipster-needle-rest-api-list-add-entry-import
 
 def add_api_namespace(api):
@@ -23,6 +25,8 @@ def add_api_namespace(api):
     api.add_namespace(change_passwd_ns)
     api.add_namespace(user_list_ns)
     api.add_namespace(app_management_ns)
+    api.add_namespace(servicos_list_ns)
+    api.add_namespace(agendamentos_list_ns)
     # pyhipster-needle-rest-api-list-add-namespaces
 
     # Adding resources to added namespaces
@@ -42,6 +46,12 @@ def add_api_namespace(api):
     app_management_ns.add_resource(AppManagment.AppManagementInfoResource, "/info")
     # pyhipster-needle-rest-api-list-add-resource
     # pyhipster-needle-rest-api-list-add-resource-list
+    servicos_list_ns.add_resource(ServicoResource.ServicoResourceList, "")
+    servicos_list_ns.add_resource(ServicoResource.ServicoResourceListCount, "/count")
+    servicos_list_ns.add_resource(ServicoResource.ServicoResource, "/<int:id>")
+    agendamentos_list_ns.add_resource(AgendamentoResource.AgendamentoResourceList, "")
+    agendamentos_list_ns.add_resource(AgendamentoResource.AgendamentoResourceListCount, "/count")
+    agendamentos_list_ns.add_resource(AgendamentoResource.AgendamentoResource, "/<int:id>")
     # pyhipster-needle-rest-api-list-add-resource-list-count
 
     return api

@@ -1,0 +1,19 @@
+entity Servico {
+  nome String required,
+  descricao String,
+  categoria String,
+  preco Long,
+  duracao Integer
+}
+
+entity Agendamento {
+  dataHora Instant
+}
+
+relationship ManyToOne {
+  Agendamento{user} to User
+}
+
+relationship OneToOne {
+  Agendamento{servico} to Servico
+}

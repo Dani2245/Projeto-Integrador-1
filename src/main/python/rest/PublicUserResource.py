@@ -16,7 +16,7 @@ public_user_list_schema = PublicUserSchema(many=True)
 
 class PublicUserResourceList(Resource):
     def get(self):
-        logging.info("GET request received on PublicUserResourceList")
+        logging.info("Requisição GET recebida em PublicUserResourceList")
         all_users = User.get_all_users()
         return public_user_list_schema.dump(all_users), 200
 
@@ -28,6 +28,6 @@ authority_list_schema = AuthoritySchema(many=True)
 
 class AuthorityResourceList(Resource):
     def get(self):
-        logging.info("GET request received on AuthorityResourceList")
+        logging.info("Requisição GET recebida em AuthorityResourceList")
         all_users = Authority.get_all_authorities()
         return authority_list_schema.dump(all_users), 200

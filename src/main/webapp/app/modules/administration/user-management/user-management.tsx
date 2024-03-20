@@ -85,13 +85,13 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
   return (
     <div>
       <h2 id="user-management-page-heading" data-cy="userManagementPageHeading">
-        Users
+        Usuários
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
-            <FontAwesomeIcon icon="sync" spin={loading} /> Refresh List
+            <FontAwesomeIcon icon="sync" spin={loading} /> Atualizar Lista
           </Button>
           <Link to={`${match.url}/new`} className="btn btn-primary jh-create-entity">
-            <FontAwesomeIcon icon="plus" /> Create a new user
+            <FontAwesomeIcon icon="plus" /> Criar novo usuário
           </Link>
         </div>
       </h2>
@@ -111,17 +111,17 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
               <FontAwesomeIcon icon="sort" />
             </th>
             <th />
-            <th>Profiles</th>
+            <th>Perfis</th>
             <th className="hand" onClick={sort('createdDate')}>
-              Created Date
+              Data de Criação
               <FontAwesomeIcon icon="sort" />
             </th>
             <th className="hand" onClick={sort('lastModifiedBy')}>
-              Last Modified By
+              Última Modificação Por
               <FontAwesomeIcon icon="sort" />
             </th>
             <th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>
-              Last Modified Date
+              Data da Última Modificação
               <FontAwesomeIcon icon="sort" />
             </th>
             <th />
@@ -140,11 +140,11 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
               <td>
                 {user.activated ? (
                   <Button color="success" onClick={toggleActive(user)}>
-                    Activated
+                    Ativado
                   </Button>
                 ) : (
                   <Button color="danger" onClick={toggleActive(user)}>
-                    Deactivated
+                    Desativado
                   </Button>
                 )}
               </td>
@@ -169,10 +169,10 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
               <td className="text-end">
                 <div className="btn-group flex-btn-group-container">
                   <Button tag={Link} to={`${match.url}/${user.login}`} color="info" size="sm">
-                    <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
+                    <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">Visualizar</span>
                   </Button>
                   <Button tag={Link} to={`${match.url}/${user.login}/edit`} color="primary" size="sm">
-                    <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
+                    <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Editar</span>
                   </Button>
                   <Button
                     tag={Link}
@@ -181,7 +181,7 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
                     size="sm"
                     disabled={account.login === user.login}
                   >
-                    <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
+                    <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Excluir</span>
                   </Button>
                 </div>
               </td>
