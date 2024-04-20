@@ -74,7 +74,7 @@ const paddingTop = '60px';
 
           <input type="submit" value="Agendar" />
         </form>
-      </main>
+        </main>
           <Footer />
         </div>
       </div>
