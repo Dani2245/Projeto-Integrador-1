@@ -4,9 +4,17 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 
-import reducer, { createEntity, deleteEntity, getEntities, getEntity, updateEntity, partialUpdateEntity, reset } from './servico.reducer';
-import { EntityState } from 'app/shared/reducers/reducer.utils';
-import { IServico, defaultValue } from 'app/shared/model/servico.model';
+import reducer, {
+  createEntity,
+  deleteEntity,
+  getEntities,
+  getEntity,
+  partialUpdateEntity,
+  reset,
+  updateEntity
+} from './servico.reducer';
+import {EntityState} from 'app/shared/reducers/reducer.utils';
+import {defaultValue, IServico} from 'app/shared/model/servico.model';
 
 describe('Entities reducer tests', () => {
   function isEmpty(element): boolean {
@@ -39,13 +47,13 @@ describe('Entities reducer tests', () => {
 
   function testMultipleTypes(types, payload, testFunction, error?) {
     types.forEach(e => {
-      testFunction(reducer(undefined, { type: e, payload, error }));
+      testFunction(reducer(undefined, {type: e, payload, error}));
     });
   }
 
   describe('Common', () => {
     it('should return the initial state', () => {
-      testInitialState(reducer(undefined, { type: '' }));
+      testInitialState(reducer(undefined, {type: ''}));
     });
   });
 
@@ -75,7 +83,7 @@ describe('Entities reducer tests', () => {
     });
 
     it('should reset the state', () => {
-      expect(reducer({ ...initialState, loading: true }, reset())).toEqual({
+      expect(reducer({...initialState, loading: true}, reset())).toEqual({
         ...initialState,
       });
     });
@@ -109,7 +117,7 @@ describe('Entities reducer tests', () => {
 
   describe('Successes', () => {
     it('should fetch all entities', () => {
-      const payload = { data: [{ 1: 'fake1' }, { 2: 'fake2' }] };
+      const payload = {data: [{1: 'fake1'}, {2: 'fake2'}]};
       expect(
         reducer(undefined, {
           type: getEntities.fulfilled.type,
@@ -123,7 +131,7 @@ describe('Entities reducer tests', () => {
     });
 
     it('should fetch a single entity', () => {
-      const payload = { data: { 1: 'fake1' } };
+      const payload = {data: {1: 'fake1'}};
       expect(
         reducer(undefined, {
           type: getEntity.fulfilled.type,
@@ -137,7 +145,7 @@ describe('Entities reducer tests', () => {
     });
 
     it('should create/update entity', () => {
-      const payload = { data: 'fake payload' };
+      const payload = {data: 'fake payload'};
       expect(
         reducer(undefined, {
           type: createEntity.fulfilled.type,
@@ -167,7 +175,7 @@ describe('Entities reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});
@@ -221,7 +229,7 @@ describe('Entities reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(createEntity({ id: 456 }));
+      await store.dispatch(createEntity({id: 456}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
       expect(store.getActions()[2]).toMatchObject(expectedActions[2]);
@@ -240,7 +248,7 @@ describe('Entities reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(updateEntity({ id: 456 }));
+      await store.dispatch(updateEntity({id: 456}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
       expect(store.getActions()[2]).toMatchObject(expectedActions[2]);
@@ -259,7 +267,7 @@ describe('Entities reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(partialUpdateEntity({ id: 123 }));
+      await store.dispatch(partialUpdateEntity({id: 123}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
       expect(store.getActions()[2]).toMatchObject(expectedActions[2]);

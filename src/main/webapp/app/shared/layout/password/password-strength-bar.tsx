@@ -6,7 +6,7 @@ export interface IPasswordStrengthBarProps {
   password: string;
 }
 
-export const PasswordStrengthBar = ({ password }: IPasswordStrengthBarProps) => {
+export const PasswordStrengthBar = ({password}: IPasswordStrengthBarProps) => {
   const colors = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
 
   const measureStrength = (p: string): number => {
@@ -48,13 +48,14 @@ export const PasswordStrengthBar = ({ password }: IPasswordStrengthBarProps) => 
         idx = 4;
       }
     }
-    return { idx: idx + 1, col: colors[idx] };
+    return {idx: idx + 1, col: colors[idx]};
   };
 
   const getPoints = forca => {
     const pts = [] as any[];
     for (let i = 0; i < 5; i++) {
-      pts.push(<li key={i} className="point" style={i < forca.idx ? { backgroundColor: forca.col } : { backgroundColor: '#DDD' }} />);
+      pts.push(<li key={i} className="point"
+                   style={i < forca.idx ? {backgroundColor: forca.col} : {backgroundColor: '#DDD'}}/>);
     }
     return pts;
   };

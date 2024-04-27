@@ -1,8 +1,8 @@
 import React from 'react';
-import { ValidatedField } from 'react-jhipster';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Alert, Row, Col, Form } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import {ValidatedField} from 'react-jhipster';
+import {Alert, Button, Col, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
+import {Link} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
 export interface ILoginModalProps {
   showModal: boolean;
@@ -12,17 +12,17 @@ export interface ILoginModalProps {
 }
 
 const LoginModal = (props: ILoginModalProps) => {
-  const login = ({ username, password, rememberMe }) => {
+  const login = ({username, password, rememberMe}) => {
     props.handleLogin(username, password, rememberMe);
   };
 
   const {
     handleSubmit,
     register,
-    formState: { errors, touchedFields },
-  } = useForm({ mode: 'onTouched' });
+    formState: {errors, touchedFields},
+  } = useForm({mode: 'onTouched'});
 
-  const { loginError, handleClose } = props;
+  const {loginError, handleClose} = props;
 
   const handleLoginSubmit = e => {
     handleSubmit(login)(e);
@@ -51,7 +51,7 @@ const LoginModal = (props: ILoginModalProps) => {
                 required
                 autoFocus
                 data-cy="username"
-                validate={{ required: 'Nome de usuário não pode estar vazio!' }}
+                validate={{required: 'Nome de usuário não pode estar vazio!'}}
                 register={register}
                 error={errors.username}
                 isTouched={touchedFields.username}
@@ -63,12 +63,13 @@ const LoginModal = (props: ILoginModalProps) => {
                 placeholder="Sua senha"
                 required
                 data-cy="password"
-                validate={{ required: 'Senha não pode estar vazia!' }}
+                validate={{required: 'Senha não pode estar vazia!'}}
                 register={register}
                 error={errors.password}
                 isTouched={touchedFields.password}
               />
-              <ValidatedField name="rememberMe" type="checkbox" check label="Lembrar-me" value={true} register={register} />
+              <ValidatedField name="rememberMe" type="checkbox" check label="Lembrar-me" value={true}
+                              register={register}/>
             </Col>
           </Row>
           <div className="mt-1">&nbsp;</div>

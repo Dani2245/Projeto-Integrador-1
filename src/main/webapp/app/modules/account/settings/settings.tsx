@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Button, Col, Row } from 'reactstrap';
-import { ValidatedField, ValidatedForm, isEmail } from 'react-jhipster';
-import { toast } from 'react-toastify';
+import React, {useEffect} from 'react';
+import {Button, Col, Row} from 'reactstrap';
+import {isEmail, ValidatedField, ValidatedForm} from 'react-jhipster';
+import {toast} from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getSession } from 'app/shared/reducers/authentication';
-import { saveAccountSettings, reset } from './settings.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {getSession} from 'app/shared/reducers/authentication';
+import {reset, saveAccountSettings} from './settings.reducer';
 
 export const SettingsPage = () => {
   const dispatch = useAppDispatch();
@@ -46,9 +46,9 @@ export const SettingsPage = () => {
               id="firstName"
               placeholder="Seu primeiro nome"
               validate={{
-                required: { value: true, message: 'Seu primeiro nome é obrigatório.' },
-                minLength: { value: 1, message: 'Seu primeiro nome deve ter pelo menos 1 caractere.' },
-                maxLength: { value: 50, message: 'Seu primeiro nome não pode ter mais de 50 caracteres.' },
+                required: {value: true, message: 'Seu primeiro nome é obrigatório.'},
+                minLength: {value: 1, message: 'Seu primeiro nome deve ter pelo menos 1 caractere.'},
+                maxLength: {value: 50, message: 'Seu primeiro nome não pode ter mais de 50 caracteres.'},
               }}
               data-cy="firstname"
             />
@@ -58,9 +58,9 @@ export const SettingsPage = () => {
               id="lastName"
               placeholder="Seu sobrenome"
               validate={{
-                required: { value: true, message: 'Seu sobrenome é obrigatório.' },
-                minLength: { value: 1, message: 'Seu sobrenome deve ter pelo menos 1 caractere.' },
-                maxLength: { value: 50, message: 'Seu sobrenome não pode ter mais de 50 caracteres.' },
+                required: {value: true, message: 'Seu sobrenome é obrigatório.'},
+                minLength: {value: 1, message: 'Seu sobrenome deve ter pelo menos 1 caractere.'},
+                maxLength: {value: 50, message: 'Seu sobrenome não pode ter mais de 50 caracteres.'},
               }}
               data-cy="lastname"
             />
@@ -94,9 +94,9 @@ export const SettingsPage = () => {
               placeholder={'Seu email'}
               type="email"
               validate={{
-                required: { value: true, message: 'Seu email é obrigatório.' },
-                minLength: { value: 5, message: 'Seu email deve ter pelo menos 5 caracteres.' },
-                maxLength: { value: 254, message: 'Seu email não pode ter mais de 50 caracteres.' },
+                required: {value: true, message: 'Seu email é obrigatório.'},
+                minLength: {value: 5, message: 'Seu email deve ter pelo menos 5 caracteres.'},
+                maxLength: {value: 254, message: 'Seu email não pode ter mais de 50 caracteres.'},
                 validate: v => isEmail(v) || 'Seu email é inválido.',
               }}
               data-cy="email"

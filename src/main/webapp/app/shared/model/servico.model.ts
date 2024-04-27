@@ -1,4 +1,4 @@
-import { IAgendamento } from 'app/shared/model/agendamento.model';
+import {IAgendamento} from 'app/shared/model/agendamento.model';
 
 export interface IServico {
   id?: number;

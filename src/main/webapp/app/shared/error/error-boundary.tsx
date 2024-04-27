@@ -10,7 +10,7 @@ interface IErrorBoundaryState {
 }
 
 class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryState> {
-  readonly state: IErrorBoundaryState = { error: undefined, errorInfo: undefined };
+  readonly state: IErrorBoundaryState = {error: undefined, errorInfo: undefined};
 
   componentDidCatch(error, errorInfo) {
     this.setState({
@@ -20,12 +20,12 @@ class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryS
   }
 
   render() {
-    const { error, errorInfo } = this.state;
+    const {error, errorInfo} = this.state;
     if (errorInfo) {
       const errorDetails = DEVELOPMENT ? (
         <details className="preserve-space">
           {error && error.toString()}
-          <br />
+          <br/>
           {errorInfo.componentStack}
         </details>
       ) : undefined;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
+import {Router} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
+import {render} from '@testing-library/react';
 
 import ErrorBoundaryRoute from './error-boundary-route';
 
@@ -18,14 +18,14 @@ describe('error-boundary-route component', () => {
 
   // All tests will go here
   it('Should throw error when no component is provided', () => {
-    expect(() => render(<ErrorBoundaryRoute />)).toThrow(Error);
+    expect(() => render(<ErrorBoundaryRoute/>)).toThrow(Error);
   });
 
   it('Should render fallback component when an uncaught error is thrown from component', () => {
     const history = createMemoryHistory();
-    const { container } = render(
+    const {container} = render(
       <Router history={history}>
-        <ErrorBoundaryRoute component={ErrorComp} path="/" />
+        <ErrorBoundaryRoute component={ErrorComp} path="/"/>
       </Router>
     );
     expect(container.innerHTML).toEqual('<div><h2 class="error">An unexpected error has occurred.</h2></div>');

@@ -1,8 +1,4 @@
-import axios from 'axios';
-import { createAsyncThunk, createSlice, isPending, isRejected } from '@reduxjs/toolkit';
-
-import { serializeAxiosError } from 'app/shared/reducers/reducer.utils';
-import { AppThunk } from 'app/config/store';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   loading: false,
@@ -18,7 +14,8 @@ export const AdministrationSlice = createSlice({
   name: 'administration',
   initialState: initialState as AdministrationState,
   reducers: {},
-  extraReducers(builder) {},
+  extraReducers(builder) {
+  },
 });
 
 // Reducer

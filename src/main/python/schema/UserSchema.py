@@ -90,6 +90,8 @@ class ManagedUserSchema(ma.SQLAlchemyAutoSchema):
         )
         sqla_session = db.session
 
+    firstName = auto_field("first_name")
+    lastName = auto_field("last_name")
     password = auto_field("password_hash")
     langKey = auto_field("lang_key")
 

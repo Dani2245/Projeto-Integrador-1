@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { createAsyncThunk, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
+import {createAsyncThunk, isFulfilled, isPending} from '@reduxjs/toolkit';
 
-import { cleanEntity } from 'app/shared/util/entity-utils';
-import { IQueryParams, createEntitySlice, EntityState, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
-import { IServico, defaultValue } from 'app/shared/model/servico.model';
+import {cleanEntity} from 'app/shared/util/entity-utils';
+import {createEntitySlice, EntityState, IQueryParams, serializeAxiosError} from 'app/shared/reducers/reducer.utils';
+import {defaultValue, IServico} from 'app/shared/model/servico.model';
 
 const initialState: EntityState<IServico> = {
   loading: false,
@@ -18,7 +18,7 @@ const apiUrl = 'api/servicos';
 
 // Actions
 
-export const getEntities = createAsyncThunk('servico/fetch_entity_list', async ({ page, size, sort }: IQueryParams) => {
+export const getEntities = createAsyncThunk('servico/fetch_entity_list', async ({page, size, sort}: IQueryParams) => {
   const requestUrl = `${apiUrl}?cacheBuster=${new Date().getTime()}`;
   return axios.get<IServico[]>(requestUrl);
 });
@@ -29,7 +29,7 @@ export const getEntity = createAsyncThunk(
     const requestUrl = `${apiUrl}/${id}`;
     return axios.get<IServico>(requestUrl);
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const createEntity = createAsyncThunk(
@@ -39,7 +39,7 @@ export const createEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const updateEntity = createAsyncThunk(
@@ -49,7 +49,7 @@ export const updateEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const partialUpdateEntity = createAsyncThunk(
@@ -59,7 +59,7 @@ export const partialUpdateEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const deleteEntity = createAsyncThunk(
@@ -70,7 +70,7 @@ export const deleteEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 // slice
@@ -90,7 +90,7 @@ export const ServicoSlice = createEntitySlice({
         state.entity = {};
       })
       .addMatcher(isFulfilled(getEntities), (state, action) => {
-        const { data } = action.payload;
+        const {data} = action.payload;
 
         return {
           ...state,
@@ -117,7 +117,7 @@ export const ServicoSlice = createEntitySlice({
   },
 });
 
-export const { reset } = ServicoSlice.actions;
+export const {reset} = ServicoSlice.actions;
 
 // Reducer
 export default ServicoSlice.reducer;

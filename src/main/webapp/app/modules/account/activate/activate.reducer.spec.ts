@@ -3,39 +3,39 @@ import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
 
-import activate, { activateAction, reset } from './activate.reducer';
+import activate, {activateAction, reset} from './activate.reducer';
 
 describe('Activate reducer tests', () => {
   it('should return the initial state', () => {
-    expect(activate(undefined, { type: '' })).toMatchObject({
+    expect(activate(undefined, {type: ''})).toMatchObject({
       activationSuccess: false,
       activationFailure: false,
     });
   });
 
   it('should reset', () => {
-    expect(activate({ activationSuccess: true, activationFailure: false }, reset)).toMatchObject({
+    expect(activate({activationSuccess: true, activationFailure: false}, reset)).toMatchObject({
       activationSuccess: false,
       activationFailure: false,
     });
   });
 
   it('should detect a success', () => {
-    expect(activate(undefined, { type: activateAction.fulfilled.type })).toMatchObject({
+    expect(activate(undefined, {type: activateAction.fulfilled.type})).toMatchObject({
       activationSuccess: true,
       activationFailure: false,
     });
   });
 
   it('should return the same state on request', () => {
-    expect(activate(undefined, { type: activateAction.pending.type })).toMatchObject({
+    expect(activate(undefined, {type: activateAction.pending.type})).toMatchObject({
       activationSuccess: false,
       activationFailure: false,
     });
   });
 
   it('should detect a failure', () => {
-    expect(activate(undefined, { type: activateAction.rejected.type })).toMatchObject({
+    expect(activate(undefined, {type: activateAction.rejected.type})).toMatchObject({
       activationSuccess: false,
       activationFailure: true,
     });
@@ -46,7 +46,7 @@ describe('Activate reducer tests', () => {
       activationSuccess: false,
       activationFailure: false,
     };
-    expect(activate({ activationSuccess: true, activationFailure: true }, reset)).toEqual({
+    expect(activate({activationSuccess: true, activationFailure: true}, reset)).toEqual({
       ...initialState,
     });
   });
@@ -54,7 +54,7 @@ describe('Activate reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});

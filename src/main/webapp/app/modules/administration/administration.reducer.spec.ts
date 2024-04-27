@@ -1,8 +1,3 @@
-import configureStore from 'redux-mock-store';
-import axios from 'axios';
-import thunk from 'redux-thunk';
-import sinon from 'sinon';
-
 import administration from './administration.reducer';
 
 describe('Administration reducer tests', () => {
@@ -23,13 +18,13 @@ describe('Administration reducer tests', () => {
 
   function testMultipleTypes(types, payload, testFunction, error?) {
     types.forEach(e => {
-      testFunction(administration(undefined, { type: e, payload, error }));
+      testFunction(administration(undefined, {type: e, payload, error}));
     });
   }
 
   describe('Common', () => {
     it('should return the initial state', () => {
-      testInitialState(administration(undefined, { type: '' }));
+      testInitialState(administration(undefined, {type: ''}));
     });
   });
 
@@ -62,10 +57,11 @@ describe('Administration reducer tests', () => {
     });
   });
 
-  describe('Success', () => {});
+  describe('Success', () => {
+  });
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
   });
 });

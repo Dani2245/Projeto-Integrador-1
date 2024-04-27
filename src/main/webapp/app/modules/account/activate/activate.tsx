@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { Row, Col, Alert } from 'reactstrap';
-import { getUrlParameter } from 'react-jhipster';
+import React, {useEffect} from 'react';
+import {Link, RouteComponentProps} from 'react-router-dom';
+import {Alert, Col, Row} from 'reactstrap';
+import {getUrlParameter} from 'react-jhipster';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { activateAction, reset } from './activate.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {activateAction, reset} from './activate.reducer';
 
 const successAlert = (
   <Alert color="success">
@@ -32,7 +32,7 @@ export const ActivatePage = (props: RouteComponentProps<{ key: any }>) => {
     };
   }, []);
 
-  const { activationSuccess, activationFailure } = useAppSelector(state => state.activate);
+  const {activationSuccess, activationFailure} = useAppSelector(state => state.activate);
 
   return (
     <div>

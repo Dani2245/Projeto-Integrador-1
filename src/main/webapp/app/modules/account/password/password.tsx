@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { ValidatedField, ValidatedForm } from 'react-jhipster';
-import { Row, Col, Button } from 'reactstrap';
-import { toast } from 'react-toastify';
+import React, {useEffect, useState} from 'react';
+import {ValidatedField, ValidatedForm} from 'react-jhipster';
+import {Button, Col, Row} from 'reactstrap';
+import {toast} from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getSession } from 'app/shared/reducers/authentication';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {getSession} from 'app/shared/reducers/authentication';
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
-import { savePassword, reset } from './password.reducer';
+import {reset, savePassword} from './password.reducer';
 
 export const PasswordPage = () => {
   const [password, setPassword] = useState('');
@@ -20,8 +20,8 @@ export const PasswordPage = () => {
     };
   }, []);
 
-  const handleValidSubmit = ({ currentPassword, newPassword }) => {
-    dispatch(savePassword({ currentPassword, newPassword }));
+  const handleValidSubmit = ({currentPassword, newPassword}) => {
+    dispatch(savePassword({currentPassword, newPassword}));
   };
 
   const updatePassword = event => setPassword(event.target.value);
@@ -50,7 +50,7 @@ export const PasswordPage = () => {
               placeholder={'Current password'}
               type="password"
               validate={{
-                required: { value: true, message: 'Your password is required.' },
+                required: {value: true, message: 'Your password is required.'},
               }}
               data-cy="currentPassword"
             />
@@ -60,23 +60,23 @@ export const PasswordPage = () => {
               placeholder={'New password'}
               type="password"
               validate={{
-                required: { value: true, message: 'Your password is required.' },
-                minLength: { value: 4, message: 'Your password is required to be at least 4 characters.' },
-                maxLength: { value: 50, message: 'Your password cannot be longer than 50 characters.' },
+                required: {value: true, message: 'Your password is required.'},
+                minLength: {value: 4, message: 'Your password is required to be at least 4 characters.'},
+                maxLength: {value: 50, message: 'Your password cannot be longer than 50 characters.'},
               }}
               onChange={updatePassword}
               data-cy="newPassword"
             />
-            <PasswordStrengthBar password={password} />
+            <PasswordStrengthBar password={password}/>
             <ValidatedField
               name="confirmPassword"
               label="New password confirmation"
               placeholder="Confirm the new password"
               type="password"
               validate={{
-                required: { value: true, message: 'Your confirmation password is required.' },
-                minLength: { value: 4, message: 'Your confirmation password is required to be at least 4 characters.' },
-                maxLength: { value: 50, message: 'Your confirmation password cannot be longer than 50 characters.' },
+                required: {value: true, message: 'Your confirmation password is required.'},
+                minLength: {value: 4, message: 'Your confirmation password is required to be at least 4 characters.'},
+                maxLength: {value: 50, message: 'Your confirmation password cannot be longer than 50 characters.'},
                 validate: v => v === password || 'The password and its confirmation do not match!',
               }}
               data-cy="confirmPassword"

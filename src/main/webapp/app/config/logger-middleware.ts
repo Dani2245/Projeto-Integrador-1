@@ -1,7 +1,7 @@
 /* eslint no-console: off */
 export default () => next => action => {
   if (DEVELOPMENT) {
-    const { type, payload, meta, error } = action;
+    const {type, payload, meta, error} = action;
 
     console.groupCollapsed(type);
     console.log('Payload:', payload);

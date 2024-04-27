@@ -2,6 +2,7 @@ from flask import request
 import logging
 import json
 from flask_restx import Resource, Namespace
+# from flask_jwt_extended import  get_jwt_identity
 from domain.Agendamento import Agendamento
 from schema.AgendamentoSchema import AgendamentoSchema
 from flask_jwt_extended import jwt_required
@@ -46,7 +47,7 @@ class AgendamentoResource(Resource):
         except SQLAlchemyError as e:
             return {"message": str(e.__dict__['orig'])}, 400
         return agendamentos_schema.dump(updated_agendamentos), 200
-    
+
     @jwt_required()
     def patch(self, id):
         logging.info("PATCH request received on AgendamentoResource")
@@ -87,7 +88,7 @@ class AgendamentoResourceList(Resource):
     def get(self):
         logging.info("GET request received on AgendamentoResourceList")
         page = request.args.get('page', default=1, type=int)
-        size = request.args.get('size', default=20, type=int)
+        size = request.args.get('size', default=1000, type=int)
         agendamentos = Agendamento.find_all(page, size)
         if agendamentos is not None:
             return agendamentos_list_schema.dump(agendamentos), 200
@@ -97,6 +98,17 @@ class AgendamentoResourceList(Resource):
     def post(self):
         logging.info("POST request received on AgendamentoResourceList")
         agendamentos_json = request.get_json()
+        del agendamentos_json['user']['getfName']
+        del agendamentos_json['user']['getlName']
+
+        # # Get the role of the current user
+        # current_user = get_jwt_identity()
+        # user_role = current_user['role']
+        #
+        # # If the user is ROLE_USER, set the Cliente to be the current user
+        # if user_role == 'ROLE_USER':
+        #     agendamentos_json['cliente'] = current_user['username']
+
         try:
             agendamentos_data = agendamentos_schema.load(agendamentos_json, partial=True)
         except ValidationError as err:

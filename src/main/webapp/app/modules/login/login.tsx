@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Redirect, RouteComponentProps} from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { login } from 'app/shared/reducers/authentication';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {login} from 'app/shared/reducers/authentication';
 import LoginModal from './login-modal';
 
 export const Login = (props: RouteComponentProps<any>) => {
@@ -23,12 +23,13 @@ export const Login = (props: RouteComponentProps<any>) => {
     props.history.push('/');
   };
 
-  const { location } = props;
-  const { from } = (location.state as any) || { from: { pathname: '/', search: location.search } };
+  const {location} = props;
+  const {from} = (location.state as any) || {from: {pathname: '/', search: location.search}};
   if (isAuthenticated) {
-    return <Redirect to={from} />;
+    return <Redirect to={from}/>;
   }
-  return <LoginModal showModal={showModal} handleLogin={handleLogin} handleClose={handleClose} loginError={loginError} />;
+  return <LoginModal showModal={showModal} handleLogin={handleLogin} handleClose={handleClose}
+                     loginError={loginError}/>;
 };
 
 export default Login;

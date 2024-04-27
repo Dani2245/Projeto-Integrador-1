@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { serializeAxiosError } from 'app/shared/reducers/reducer.utils';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {serializeAxiosError} from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   loading: false,
@@ -16,14 +16,17 @@ export type RegisterState = Readonly<typeof initialState>;
 
 export const handleRegister = createAsyncThunk(
   'register/create_account',
-  async (data: { 
-    login: string; 
-    email: string; 
-    // phone: string; 
-    password: string; 
-    langKey?: string 
+  async (data: {
+    login: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    langKey?: string
   }) => axios.post<any>('api/register', data),
-  { serializeError: serializeAxiosError }
+  {
+    serializeError: serializeAxiosError,
+  }
 );
 
 export const RegisterSlice = createSlice({
@@ -47,12 +50,12 @@ export const RegisterSlice = createSlice({
       .addCase(handleRegister.fulfilled, () => ({
         ...initialState,
         registrationSuccess: true,
-        successMessage: 'Registro salvo! Por favor, verifique seu e-mail para confirmação. Se não receber o e-mail, entrar em contato pelo telefone (11) 99999-9999.',
+        successMessage: 'Registro salvo! Por favor, verifique seu e-mail para confirmação. Se não receber o e-mail, entrar em contato pelo telefone (12) 98821-2594.',
       }));
   },
 });
 
-export const { reset } = RegisterSlice.actions;
+export const {reset} = RegisterSlice.actions;
 
 // Redutor
 export default RegisterSlice.reducer;

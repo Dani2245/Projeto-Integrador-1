@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import React, {useEffect} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { getUser, deleteUser } from './user-management.reducer';
-import { useAppDispatch, useAppSelector } from 'app/config/store';
+import {deleteUser, getUser} from './user-management.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
 
 export const UserManagementDeleteDialog = (props: RouteComponentProps<{ login: string }>) => {
   const dispatch = useAppDispatch();
@@ -32,11 +32,11 @@ export const UserManagementDeleteDialog = (props: RouteComponentProps<{ login: s
       <ModalBody>Tem certeza de que deseja excluir este usuário?</ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={handleClose}>
-          <FontAwesomeIcon icon="ban" />
+          <FontAwesomeIcon icon="ban"/>
           &nbsp; Cancelar
         </Button>
         <Button color="danger" onClick={confirmDelete}>
-          <FontAwesomeIcon icon="trash" />
+          <FontAwesomeIcon icon="trash"/>
           &nbsp; Excluir
         </Button>
       </ModalFooter>

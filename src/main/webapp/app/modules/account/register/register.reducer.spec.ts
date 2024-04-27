@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
-import register, { handleRegister, reset } from './register.reducer';
+import register, {handleRegister, reset} from './register.reducer';
 
 describe('Testes de criação de conta', () => {
   const initialState = {
@@ -14,13 +14,13 @@ describe('Testes de criação de conta', () => {
   };
 
   it('deve retornar o estado inicial', () => {
-    expect(register(undefined, { type: '' })).toEqual({
+    expect(register(undefined, {type: ''})).toEqual({
       ...initialState,
     });
   });
 
   it('deve detectar uma requisição', () => {
-    expect(register(undefined, { type: handleRegister.pending.type })).toEqual({
+    expect(register(undefined, {type: handleRegister.pending.type})).toEqual({
       ...initialState,
       loading: true,
     });
@@ -28,7 +28,13 @@ describe('Testes de criação de conta', () => {
 
   it('deve lidar com o RESET', () => {
     expect(
-      register({ loading: true, registrationSuccess: true, registrationFailure: true, errorMessage: '', successMessage: '' }, reset())
+      register({
+        loading: true,
+        registrationSuccess: true,
+        registrationFailure: true,
+        errorMessage: '',
+        successMessage: ''
+      }, reset())
     ).toEqual({
       ...initialState,
     });
@@ -48,7 +54,7 @@ describe('Testes de criação de conta', () => {
   });
 
   it('deve lidar com a falha do CREATE_ACCOUNT', () => {
-    const error = { message: 'fake error' };
+    const error = {message: 'fake error'};
     expect(
       register(undefined, {
         type: handleRegister.rejected.type,
@@ -64,7 +70,7 @@ describe('Testes de criação de conta', () => {
   describe('Ações', () => {
     let store;
 
-    const resolvedObject = { value: 'qualquer coisa' };
+    const resolvedObject = {value: 'qualquer coisa'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});
@@ -81,11 +87,14 @@ describe('Testes de criação de conta', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(handleRegister({ login: '',
-      email: '',
-      // phone: '', 
-      password: ''
-    }));
+      await store.dispatch(handleRegister({
+        login: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        // phone: '',
+        password: ''
+      }));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
     });

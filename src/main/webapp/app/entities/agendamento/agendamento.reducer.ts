@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { createAsyncThunk, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
+import {createAsyncThunk, isFulfilled, isPending} from '@reduxjs/toolkit';
 
-import { cleanEntity } from 'app/shared/util/entity-utils';
-import { IQueryParams, createEntitySlice, EntityState, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
-import { IAgendamento, defaultValue } from 'app/shared/model/agendamento.model';
+import {cleanEntity} from 'app/shared/util/entity-utils';
+import {createEntitySlice, EntityState, IQueryParams, serializeAxiosError} from 'app/shared/reducers/reducer.utils';
+import {defaultValue, IAgendamento} from 'app/shared/model/agendamento.model';
 
 const initialState: EntityState<IAgendamento> = {
   loading: false,
@@ -18,7 +18,11 @@ const apiUrl = 'api/agendamentos';
 
 // Actions
 
-export const getEntities = createAsyncThunk('agendamento/fetch_entity_list', async ({ page, size, sort }: IQueryParams) => {
+export const getEntities = createAsyncThunk('agendamento/fetch_entity_list', async ({
+                                                                                      page,
+                                                                                      size,
+                                                                                      sort
+                                                                                    }: IQueryParams) => {
   const requestUrl = `${apiUrl}?cacheBuster=${new Date().getTime()}`;
   return axios.get<IAgendamento[]>(requestUrl);
 });
@@ -29,7 +33,7 @@ export const getEntity = createAsyncThunk(
     const requestUrl = `${apiUrl}/${id}`;
     return axios.get<IAgendamento>(requestUrl);
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const createEntity = createAsyncThunk(
@@ -39,7 +43,7 @@ export const createEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const updateEntity = createAsyncThunk(
@@ -49,7 +53,7 @@ export const updateEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const partialUpdateEntity = createAsyncThunk(
@@ -59,7 +63,7 @@ export const partialUpdateEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const deleteEntity = createAsyncThunk(
@@ -70,7 +74,7 @@ export const deleteEntity = createAsyncThunk(
     thunkAPI.dispatch(getEntities({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 // slice
@@ -90,7 +94,7 @@ export const AgendamentoSlice = createEntitySlice({
         state.entity = {};
       })
       .addMatcher(isFulfilled(getEntities), (state, action) => {
-        const { data } = action.payload;
+        const {data} = action.payload;
 
         return {
           ...state,
@@ -117,7 +121,7 @@ export const AgendamentoSlice = createEntitySlice({
   },
 });
 
-export const { reset } = AgendamentoSlice.actions;
+export const {reset} = AgendamentoSlice.actions;
 
 // Reducer
 export default AgendamentoSlice.reducer;
