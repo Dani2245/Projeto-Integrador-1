@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import sinon from 'sinon';
 
-import account, { updateAccount, saveAccountSettings, reset } from './settings.reducer';
-import { getAccount } from 'app/shared/reducers/authentication';
+import account, {reset, saveAccountSettings, updateAccount} from './settings.reducer';
+import {getAccount} from 'app/shared/reducers/authentication';
 
 describe('Settings reducer tests', () => {
   describe('Common tests', () => {
     it('should return the initial state', () => {
-      const toTest = account(undefined, { type: '' });
+      const toTest = account(undefined, {type: ''});
       expect(toTest).toMatchObject({
         loading: false,
         errorMessage: null,
@@ -21,7 +21,7 @@ describe('Settings reducer tests', () => {
 
   describe('Settings update', () => {
     it('should detect a request', () => {
-      const toTest = account(undefined, { type: updateAccount.pending.type });
+      const toTest = account(undefined, {type: updateAccount.pending.type});
       expect(toTest).toMatchObject({
         updateSuccess: false,
         updateFailure: false,
@@ -29,7 +29,7 @@ describe('Settings reducer tests', () => {
       });
     });
     it('should detect a success', () => {
-      const toTest = account(undefined, { type: updateAccount.fulfilled.type });
+      const toTest = account(undefined, {type: updateAccount.fulfilled.type});
       expect(toTest).toMatchObject({
         updateSuccess: true,
         updateFailure: false,
@@ -37,7 +37,7 @@ describe('Settings reducer tests', () => {
       });
     });
     it('should detect a failure', () => {
-      const toTest = account(undefined, { type: updateAccount.rejected.type });
+      const toTest = account(undefined, {type: updateAccount.rejected.type});
       expect(toTest).toMatchObject({
         updateSuccess: false,
         updateFailure: true,
@@ -53,7 +53,7 @@ describe('Settings reducer tests', () => {
         updateSuccess: false,
         updateFailure: false,
       };
-      expect(account({ ...initialState, loading: true }, reset())).toEqual({
+      expect(account({...initialState, loading: true}, reset())).toEqual({
         ...initialState,
       });
     });
@@ -62,7 +62,7 @@ describe('Settings reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});

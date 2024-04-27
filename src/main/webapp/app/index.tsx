@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {Provider} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import getStore from 'app/config/store';
 import setupAxiosInterceptors from 'app/config/axios-interceptor';
-import { clearAuthentication } from 'app/shared/reducers/authentication';
+import {clearAuthentication} from 'app/shared/reducers/authentication';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import AppComponent from 'app/app';
-import { loadIcons } from 'app/config/icon-loader';
+import {loadIcons} from 'app/config/icon-loader';
 
 const store = getStore();
 
-const actions = bindActionCreators({ clearAuthentication }, store.dispatch);
+const actions = bindActionCreators({clearAuthentication}, store.dispatch);
 setupAxiosInterceptors(() => actions.clearAuthentication('login.error.unauthorized'));
 
 loadIcons();
@@ -25,7 +25,7 @@ const render = Component =>
     <ErrorBoundary>
       <Provider store={store}>
         <div>
-          <Component />
+          <Component/>
         </div>
       </Provider>
     </ErrorBoundary>,

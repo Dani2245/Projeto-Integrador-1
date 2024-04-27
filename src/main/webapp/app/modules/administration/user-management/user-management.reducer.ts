@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, isFulfilled, isPending, isRejected} from '@reduxjs/toolkit';
 
-import { IUser, defaultValue } from 'app/shared/model/user.model';
-import { IQueryParams, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
+import {defaultValue, IUser} from 'app/shared/model/user.model';
+import {IQueryParams, serializeAxiosError} from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   loading: false,
@@ -20,12 +20,16 @@ const adminUrl = 'api/admin/users';
 
 // Async Actions
 
-export const getUsers = createAsyncThunk('userManagement/fetch_users', async ({ page, size, sort }: IQueryParams) => {
+export const getUsers = createAsyncThunk('userManagement/fetch_users', async ({page, size, sort}: IQueryParams) => {
   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return axios.get<IUser[]>(requestUrl);
 });
 
-export const getUsersAsAdmin = createAsyncThunk('userManagement/fetch_users_as_admin', async ({ page, size, sort }: IQueryParams) => {
+export const getUsersAsAdmin = createAsyncThunk('userManagement/fetch_users_as_admin', async ({
+                                                                                                page,
+                                                                                                size,
+                                                                                                sort
+                                                                                              }: IQueryParams) => {
   const requestUrl = `${adminUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return axios.get<IUser[]>(requestUrl);
 });
@@ -40,7 +44,7 @@ export const getUser = createAsyncThunk(
     const requestUrl = `${adminUrl}/${id}`;
     return axios.get<IUser>(requestUrl);
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const createUser = createAsyncThunk(
@@ -50,7 +54,7 @@ export const createUser = createAsyncThunk(
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const updateUser = createAsyncThunk(
@@ -60,7 +64,7 @@ export const updateUser = createAsyncThunk(
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const deleteUser = createAsyncThunk(
@@ -71,7 +75,7 @@ export const deleteUser = createAsyncThunk(
     thunkAPI.dispatch(getUsersAsAdmin({}));
     return result;
   },
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export type UserManagementState = Readonly<typeof initialState>;
@@ -128,7 +132,7 @@ export const UserManagementSlice = createSlice({
   },
 });
 
-export const { reset } = UserManagementSlice.actions;
+export const {reset} = UserManagementSlice.actions;
 
 // Reducer
 export default UserManagementSlice.reducer;

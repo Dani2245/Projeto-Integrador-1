@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import { serializeAxiosError } from 'app/shared/reducers/reducer.utils';
+import {serializeAxiosError} from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   loading: false,
@@ -25,7 +25,7 @@ interface IPassword {
 export const savePassword = createAsyncThunk(
   'password/update_password',
   async (password: IPassword) => axios.post(`${apiUrl}/change-password`, password),
-  { serializeError: serializeAxiosError }
+  {serializeError: serializeAxiosError}
 );
 
 export const PasswordSlice = createSlice({
@@ -58,7 +58,7 @@ export const PasswordSlice = createSlice({
   },
 });
 
-export const { reset } = PasswordSlice.actions;
+export const {reset} = PasswordSlice.actions;
 
 // Reducer
 export default PasswordSlice.reducer;

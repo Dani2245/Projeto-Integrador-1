@@ -1,12 +1,12 @@
-import { toast } from 'react-toastify';
-import { isFulfilledAction, isRejectedAction } from 'app/shared/reducers/reducer.utils';
+import {toast} from 'react-toastify';
+import {isFulfilledAction, isRejectedAction} from 'app/shared/reducers/reducer.utils';
 
 const addErrorAlert = (message, key?, data?) => {
   toast.error(message);
 };
 
 export default () => next => action => {
-  const { error, payload } = action;
+  const {error, payload} = action;
 
   /**
    *
@@ -16,11 +16,11 @@ export default () => next => action => {
     const headers = payload?.headers;
     let alert: string | null = null;
     headers &&
-      Object.entries<string>(headers).forEach(([k, v]) => {
-        if (k.toLowerCase().endsWith('app-alert')) {
-          alert = v;
-        }
-      });
+    Object.entries<string>(headers).forEach(([k, v]) => {
+      if (k.toLowerCase().endsWith('app-alert')) {
+        alert = v;
+      }
+    });
     if (alert) {
       toast.success(alert);
     }
@@ -46,16 +46,16 @@ export default () => next => action => {
             let errorHeader: string | null = null;
             let entityKey: string | null = null;
             response?.headers &&
-              Object.entries<string>(response.headers).forEach(([k, v]) => {
-                if (k.toLowerCase().endsWith('app-error')) {
-                  errorHeader = v;
-                } else if (k.toLowerCase().endsWith('app-params')) {
-                  entityKey = v;
-                }
-              });
+            Object.entries<string>(response.headers).forEach(([k, v]) => {
+              if (k.toLowerCase().endsWith('app-error')) {
+                errorHeader = v;
+              } else if (k.toLowerCase().endsWith('app-params')) {
+                entityKey = v;
+              }
+            });
             if (errorHeader) {
               const entityName = entityKey;
-              addErrorAlert(errorHeader, errorHeader, { entityName });
+              addErrorAlert(errorHeader, errorHeader, {entityName});
             } else if (data?.fieldErrors) {
               const fieldErrors = data.fieldErrors;
               for (const fieldError of fieldErrors) {
@@ -65,7 +65,7 @@ export default () => next => action => {
                 // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                 const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                 const fieldName = convertedField.charAt(0).toUpperCase() + convertedField.slice(1);
-                addErrorAlert(`Error on field "${fieldName}"`, `error.${fieldError.message}`, { fieldName });
+                addErrorAlert(`Error on field "${fieldName}"`, `error.${fieldError.message}`, {fieldName});
               }
             } else if (typeof data === 'string' && data !== '') {
               addErrorAlert(data);

@@ -1,5 +1,5 @@
-import { ReducersMapObject, combineReducers } from '@reduxjs/toolkit';
-import { loadingBarReducer as loadingBar } from 'react-redux-loading-bar';
+import {ReducersMapObject} from '@reduxjs/toolkit';
+import {loadingBarReducer as loadingBar} from 'react-redux-loading-bar';
 
 import authentication from './authentication';
 import applicationProfile from './application-profile';

@@ -10,7 +10,7 @@ const DocsPage = () => (
       height="800"
       title="Swagger UI"
       seamless
-      style={{ border: 'none' }}
+      style={{border: 'none'}}
       data-cy="swagger-frame"
     />
   </div>

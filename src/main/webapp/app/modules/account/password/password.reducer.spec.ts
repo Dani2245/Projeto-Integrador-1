@@ -3,12 +3,12 @@ import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
 
-import password, { savePassword, reset } from './password.reducer';
+import password, {reset, savePassword} from './password.reducer';
 
 describe('Password reducer tests', () => {
   describe('Common tests', () => {
     it('should return the initial state', () => {
-      const toTest = password(undefined, { type: '' });
+      const toTest = password(undefined, {type: ''});
       expect(toTest).toMatchObject({
         loading: false,
         errorMessage: null,
@@ -20,7 +20,7 @@ describe('Password reducer tests', () => {
 
   describe('Password update', () => {
     it('should detect a request', () => {
-      const toTest = password(undefined, { type: savePassword.pending.type });
+      const toTest = password(undefined, {type: savePassword.pending.type});
       expect(toTest).toMatchObject({
         updateSuccess: false,
         updateFailure: false,
@@ -28,7 +28,7 @@ describe('Password reducer tests', () => {
       });
     });
     it('should detect a success', () => {
-      const toTest = password(undefined, { type: savePassword.fulfilled.type });
+      const toTest = password(undefined, {type: savePassword.fulfilled.type});
       expect(toTest).toMatchObject({
         updateSuccess: true,
         updateFailure: false,
@@ -36,7 +36,7 @@ describe('Password reducer tests', () => {
       });
     });
     it('should detect a failure', () => {
-      const toTest = password(undefined, { type: savePassword.rejected.type });
+      const toTest = password(undefined, {type: savePassword.rejected.type});
       expect(toTest).toMatchObject({
         updateSuccess: false,
         updateFailure: true,
@@ -52,7 +52,7 @@ describe('Password reducer tests', () => {
         updateSuccess: false,
         updateFailure: false,
       };
-      expect(password({ ...initialState, loading: true }, reset)).toEqual({
+      expect(password({...initialState, loading: true}, reset)).toEqual({
         ...initialState,
       });
     });
@@ -61,7 +61,7 @@ describe('Password reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});
@@ -78,7 +78,7 @@ describe('Password reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(savePassword({ currentPassword: '', newPassword: '' }));
+      await store.dispatch(savePassword({currentPassword: '', newPassword: ''}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
     });

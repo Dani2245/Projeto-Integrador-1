@@ -15,7 +15,7 @@ export default () => next => action => {
    * It need not run in production
    */
   if (DEVELOPMENT) {
-    const { error } = action;
+    const {error} = action;
     if (error) {
       console.error(`${action.type} caught at middleware with reason: ${JSON.stringify(error.message)}.`);
       if (error.response && error.response.data) {

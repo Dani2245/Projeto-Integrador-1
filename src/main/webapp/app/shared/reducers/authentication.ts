@@ -1,9 +1,9 @@
-import axios, { AxiosResponse } from 'axios';
-import { Storage } from 'react-jhipster';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { serializeAxiosError } from './reducer.utils';
+import axios, {AxiosResponse} from 'axios';
+import {Storage} from 'react-jhipster';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {serializeAxiosError} from './reducer.utils';
 
-import { AppThunk } from 'app/config/store';
+import {AppThunk} from 'app/config/store';
 
 const AUTH_TOKEN_KEY = 'jhi-authenticationToken';
 
@@ -48,20 +48,20 @@ export const authenticate = createAsyncThunk(
 
 export const login: (username: string, password: string, rememberMe?: boolean) => AppThunk =
   (username, password, rememberMe = false) =>
-  async dispatch => {
-    const result = await dispatch(authenticate({ username, password, rememberMe }));
-    const response = result.payload as AxiosResponse;
-    const bearerToken = response?.headers?.authorization;
-    if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
-      const jwt = bearerToken.slice(7, bearerToken.length);
-      if (rememberMe) {
-        Storage.local.set(AUTH_TOKEN_KEY, jwt);
-      } else {
-        Storage.session.set(AUTH_TOKEN_KEY, jwt);
+    async dispatch => {
+      const result = await dispatch(authenticate({username, password, rememberMe}));
+      const response = result.payload as AxiosResponse;
+      const bearerToken = response?.headers?.authorization;
+      if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
+        const jwt = bearerToken.slice(7, bearerToken.length);
+        if (rememberMe) {
+          Storage.local.set(AUTH_TOKEN_KEY, jwt);
+        } else {
+          Storage.session.set(AUTH_TOKEN_KEY, jwt);
+        }
       }
-    }
-    dispatch(getSession());
-  };
+      dispatch(getSession());
+    };
 
 export const clearAuthToken = () => {
   if (Storage.local.get(AUTH_TOKEN_KEY)) {
@@ -151,7 +151,7 @@ export const AuthenticationSlice = createSlice({
   },
 });
 
-export const { logoutSession, authError, clearAuth } = AuthenticationSlice.actions;
+export const {logoutSession, authError, clearAuth} = AuthenticationSlice.actions;
 
 // Reducer
 export default AuthenticationSlice.reducer;

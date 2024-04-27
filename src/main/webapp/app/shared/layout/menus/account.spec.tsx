@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import {render} from '@testing-library/react';
+import {Router} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
 
-import { AccountMenu } from './account';
+import {AccountMenu} from './account';
 
 describe('AccountMenu', () => {
   let mountedWrapper;
@@ -11,9 +11,9 @@ describe('AccountMenu', () => {
   const authenticatedWrapper = () => {
     if (!mountedWrapper) {
       const history = createMemoryHistory();
-      const { container } = render(
+      const {container} = render(
         <Router history={history}>
-          <AccountMenu isAuthenticated />
+          <AccountMenu isAuthenticated/>
         </Router>
       );
       mountedWrapper = container.innerHTML;
@@ -23,9 +23,9 @@ describe('AccountMenu', () => {
   const guestWrapper = () => {
     if (!mountedWrapper) {
       const history = createMemoryHistory();
-      const { container } = (mountedWrapper = render(
+      const {container} = (mountedWrapper = render(
         <Router history={history}>
-          <AccountMenu />
+          <AccountMenu/>
         </Router>
       ));
       mountedWrapper = container.innerHTML;

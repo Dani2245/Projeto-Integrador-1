@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Table, Badge } from 'reactstrap';
-import { TextFormat, JhiPagination, JhiItemCount, getSortState } from 'react-jhipster';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {useEffect, useState} from 'react';
+import {Link, RouteComponentProps} from 'react-router-dom';
+import {Badge, Button, Table} from 'reactstrap';
+import {getSortState, JhiItemCount, JhiPagination, TextFormat} from 'react-jhipster';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { APP_DATE_FORMAT } from 'app/config/constants';
-import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
-import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
-import { getUsersAsAdmin, updateUser } from './user-management.reducer';
-import { useAppDispatch, useAppSelector } from 'app/config/store';
+import {APP_DATE_FORMAT} from 'app/config/constants';
+import {ASC, DESC, ITEMS_PER_PAGE, SORT} from 'app/shared/util/pagination.constants';
+import {overridePaginationStateWithQueryParams} from 'app/shared/util/entity-utils';
+import {getUsersAsAdmin, updateUser} from './user-management.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
 
 export const UserManagement = (props: RouteComponentProps<any>) => {
   const dispatch = useAppDispatch();
@@ -76,7 +76,7 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
     );
   };
 
-  const { match } = props;
+  const {match} = props;
   const account = useAppSelector(state => state.authentication.account);
   const users = useAppSelector(state => state.userManagement.users);
   const totalItems = useAppSelector(state => state.userManagement.totalItems);
@@ -88,111 +88,113 @@ export const UserManagement = (props: RouteComponentProps<any>) => {
         Usuários
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
-            <FontAwesomeIcon icon="sync" spin={loading} /> Atualizar Lista
+            <FontAwesomeIcon icon="sync" spin={loading}/> Atualizar Lista
           </Button>
           <Link to={`${match.url}/new`} className="btn btn-primary jh-create-entity">
-            <FontAwesomeIcon icon="plus" /> Criar novo usuário
+            <FontAwesomeIcon icon="plus"/> Criar novo usuário
           </Link>
         </div>
       </h2>
       <Table responsive striped>
         <thead>
-          <tr>
-            <th className="hand" onClick={sort('id')}>
-              ID
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th className="hand" onClick={sort('login')}>
-              Login
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th className="hand" onClick={sort('email')}>
-              Email
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th />
-            <th>Perfis</th>
-            <th className="hand" onClick={sort('createdDate')}>
-              Data de Criação
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th className="hand" onClick={sort('lastModifiedBy')}>
-              Última Modificação Por
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>
-              Data da Última Modificação
-              <FontAwesomeIcon icon="sort" />
-            </th>
-            <th />
-          </tr>
+        <tr>
+          <th className="hand" onClick={sort('id')}>
+            ID
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th className="hand" onClick={sort('login')}>
+            Login
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th className="hand" onClick={sort('email')}>
+            Email
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th/>
+          <th>Perfis</th>
+          <th className="hand" onClick={sort('createdDate')}>
+            Data de Criação
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th className="hand" onClick={sort('lastModifiedBy')}>
+            Última Modificação Por
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>
+            Data da Última Modificação
+            <FontAwesomeIcon icon="sort"/>
+          </th>
+          <th/>
+        </tr>
         </thead>
         <tbody>
-          {users.map((user, i) => (
-            <tr id={user.login} key={`user-${i}`}>
-              <td>
-                <Button tag={Link} to={`${match.url}/${user.login}`} color="link" size="sm">
-                  {user.id}
+        {users.map((user, i) => (
+          <tr id={user.login} key={`user-${i}`}>
+            <td>
+              <Button tag={Link} to={`${match.url}/${user.login}`} color="link" size="sm">
+                {user.id}
+              </Button>
+            </td>
+            <td>{user.login}</td>
+            <td>{user.email}</td>
+            <td>
+              {user.activated ? (
+                <Button color="success" onClick={toggleActive(user)}>
+                  Ativado
                 </Button>
-              </td>
-              <td>{user.login}</td>
-              <td>{user.email}</td>
-              <td>
-                {user.activated ? (
-                  <Button color="success" onClick={toggleActive(user)}>
-                    Ativado
-                  </Button>
-                ) : (
-                  <Button color="danger" onClick={toggleActive(user)}>
-                    Desativado
-                  </Button>
-                )}
-              </td>
-              <td>
-                {user.authorities
-                  ? user.authorities.map((authority, j) => (
-                      <div key={`user-auth-${i}-${j}`}>
-                        <Badge color="info">{authority}</Badge>
-                      </div>
-                    ))
-                  : null}
-              </td>
-              <td>
-                {user.createdDate ? <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid /> : null}
-              </td>
-              <td>{user.lastModifiedBy}</td>
-              <td>
-                {user.lastModifiedDate ? (
-                  <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
-                ) : null}
-              </td>
-              <td className="text-end">
-                <div className="btn-group flex-btn-group-container">
-                  <Button tag={Link} to={`${match.url}/${user.login}`} color="info" size="sm">
-                    <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">Visualizar</span>
-                  </Button>
-                  <Button tag={Link} to={`${match.url}/${user.login}/edit`} color="primary" size="sm">
-                    <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Editar</span>
-                  </Button>
-                  <Button
-                    tag={Link}
-                    to={`${match.url}/${user.login}/delete`}
-                    color="danger"
-                    size="sm"
-                    disabled={account.login === user.login}
-                  >
-                    <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Excluir</span>
-                  </Button>
-                </div>
-              </td>
-            </tr>
-          ))}
+              ) : (
+                <Button color="danger" onClick={toggleActive(user)}>
+                  Desativado
+                </Button>
+              )}
+            </td>
+            <td>
+              {user.authorities
+                ? user.authorities.map((authority, j) => (
+                  <div key={`user-auth-${i}-${j}`}>
+                    <Badge color="info">{authority}</Badge>
+                  </div>
+                ))
+                : null}
+            </td>
+            <td>
+              {user.createdDate ?
+                <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid/> : null}
+            </td>
+            <td>{user.lastModifiedBy}</td>
+            <td>
+              {user.lastModifiedDate ? (
+                <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid/>
+              ) : null}
+            </td>
+            <td className="text-end">
+              <div className="btn-group flex-btn-group-container">
+                <Button tag={Link} to={`${match.url}/${user.login}`} color="info" size="sm">
+                  <FontAwesomeIcon icon="eye"/> <span className="d-none d-md-inline">Visualizar</span>
+                </Button>
+                <Button tag={Link} to={`${match.url}/${user.login}/edit`} color="primary" size="sm">
+                  <FontAwesomeIcon icon="pencil-alt"/> <span className="d-none d-md-inline">Editar</span>
+                </Button>
+                <Button
+                  tag={Link}
+                  to={`${match.url}/${user.login}/delete`}
+                  color="danger"
+                  size="sm"
+                  disabled={account.login === user.login}
+                >
+                  <FontAwesomeIcon icon="trash"/> <span className="d-none d-md-inline">Excluir</span>
+                </Button>
+              </div>
+            </td>
+          </tr>
+        ))}
         </tbody>
       </Table>
       {totalItems ? (
         <div className={users?.length > 0 ? '' : 'd-none'}>
           <div className="justify-content-center d-flex">
-            <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage} i18nEnabled />
+            <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage}
+                          i18nEnabled/>
           </div>
           <div className="justify-content-center d-flex">
             <JhiPagination

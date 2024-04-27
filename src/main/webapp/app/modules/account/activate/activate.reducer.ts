@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import { serializeAxiosError } from 'app/shared/reducers/reducer.utils';
+import {serializeAxiosError} from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   activationSuccess: false,
@@ -36,7 +36,7 @@ export const ActivateSlice = createSlice({
   },
 });
 
-export const { reset } = ActivateSlice.actions;
+export const {reset} = ActivateSlice.actions;
 
 // Reducer
 export default ActivateSlice.reducer;

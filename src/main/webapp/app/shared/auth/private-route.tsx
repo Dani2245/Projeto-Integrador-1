@@ -1,14 +1,14 @@
 import React from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import {Redirect, Route, RouteProps} from 'react-router-dom';
 
-import { useAppSelector } from 'app/config/store';
+import {useAppSelector} from 'app/config/store';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 
 interface IOwnProps extends RouteProps {
   hasAnyAuthorities?: string[];
 }
 
-export const PrivateRouteComponent = ({ component: Component, hasAnyAuthorities = [], ...rest }: IOwnProps) => {
+export const PrivateRouteComponent = ({component: Component, hasAnyAuthorities = [], ...rest}: IOwnProps) => {
   const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
   const sessionHasBeenFetched = useAppSelector(state => state.authentication.sessionHasBeenFetched);
   const account = useAppSelector(state => state.authentication.account);
@@ -36,7 +36,7 @@ export const PrivateRouteComponent = ({ component: Component, hasAnyAuthorities 
           to={{
             pathname: '/login',
             search: props.location.search,
-            state: { from: props.location },
+            state: {from: props.location},
           }}
         />
       );
@@ -45,7 +45,7 @@ export const PrivateRouteComponent = ({ component: Component, hasAnyAuthorities 
 
   if (!Component) throw new Error(`Um componente precisa ser especificado para a rota privada para o caminho ${(rest as any).path}`);
 
-  return <Route {...rest} render={renderRedirect} />;
+  return <Route {...rest} render={renderRedirect}/>;
 };
 
 export const hasAnyAuthority = (authorities: string[], hasAnyAuthorities: string[]) => {
