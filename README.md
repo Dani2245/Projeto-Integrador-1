@@ -122,3 +122,15 @@ Webpack: Starting ...
 [pyhipster:backend:start] 13-Mar-24 22:24:05 - 127.0.0.1 - - [13/Mar/2024 22:24:05] "GET /api/management/info HTTP/1.1" 200 -
 [start] No errors found.
 ```
+## Acessando o projeto
+```
+Usuário: admin
+Senha: Pr0j3to-1nt3gr@d0r1
+```
+```
+Usuário: user
+Senha: Usu@r10
+```
+Acesse o projeto em [http://localhost:9000](http://localhost:9000)
+
+### NÃO UTILIZE HTTPS

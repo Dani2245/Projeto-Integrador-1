@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { serializeAxiosError } from './reducer.utils';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {serializeAxiosError} from './reducer.utils';
 
 const initialState = {
   ribbonEnv: '',
@@ -21,7 +21,7 @@ export const ApplicationProfileSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(getProfile.fulfilled, (state, action) => {
-      const { data } = action.payload;
+      const {data} = action.payload;
       state.ribbonEnv = data['display-ribbon-on-profiles'];
       state.inProduction = data.activeProfiles.includes('prod');
       state.isOpenAPIEnabled = data.activeProfiles.includes('api-docs');

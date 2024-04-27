@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getEntity, deleteEntity } from './agendamento.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {deleteEntity, getEntity} from './agendamento.reducer';
 
 export const AgendamentoDeleteDialog = (props: RouteComponentProps<{ id: string }>) => {
   const [loadModal, setLoadModal] = useState(false);
@@ -39,15 +39,17 @@ export const AgendamentoDeleteDialog = (props: RouteComponentProps<{ id: string 
       <ModalHeader toggle={handleClose} data-cy="agendamentoDeleteDialogHeading">
         Confirm delete operation
       </ModalHeader>
-      <ModalBody id="projetoIntegradorUmApp.agendamento.delete.question">Are you sure you want to delete this Agendamento?</ModalBody>
+      <ModalBody id="projetoIntegradorUmApp.agendamento.delete.question">Tem certeza que quer apagar esse
+        Agendamento?</ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={handleClose}>
-          <FontAwesomeIcon icon="ban" />
-          &nbsp; Cancel
+          <FontAwesomeIcon icon="ban"/>
+          &nbsp; Cancelar
         </Button>
-        <Button id="jhi-confirm-delete-agendamento" data-cy="entityConfirmDeleteButton" color="danger" onClick={confirmDelete}>
-          <FontAwesomeIcon icon="trash" />
-          &nbsp; Delete
+        <Button id="jhi-confirm-delete-agendamento" data-cy="entityConfirmDeleteButton" color="danger"
+                onClick={confirmDelete}>
+          <FontAwesomeIcon icon="trash"/>
+          &nbsp; Apagar
         </Button>
       </ModalFooter>
     </Modal>

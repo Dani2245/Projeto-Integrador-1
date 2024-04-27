@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from flask_restx import Api
 from flask_jwt_extended import JWTManager
 from rest import add_api_namespace
@@ -9,6 +10,7 @@ from WebSerializer import ma
 from MailConfiguration import mail
 
 app = Flask(__name__, template_folder='../resources/templates/mail')
+CORS(app)
 bluePrint = Blueprint('api', __name__, url_prefix='/api')
 api = Api(bluePrint, doc=False)
 

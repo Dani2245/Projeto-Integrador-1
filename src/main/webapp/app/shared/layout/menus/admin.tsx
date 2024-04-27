@@ -1,8 +1,8 @@
 import React from 'react';
 import MenuItem from 'app/shared/layout/menus/menu-item';
-import { DropdownItem } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavDropdown } from './menu-components';
+import {DropdownItem} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {NavDropdown} from './menu-components';
 
 const adminMenuItems = () => (
   <>
@@ -21,12 +21,13 @@ const openAPIItem = () => (
 
 const databaseItem = () => (
   <DropdownItem tag="a" href="/sqlite-console" target="_tab">
-    <FontAwesomeIcon icon="database" fixedWidth /> Banco de dados
+    <FontAwesomeIcon icon="database" fixedWidth/> Banco de dados
   </DropdownItem>
 );
 
-export const AdminMenu = ({ showOpenAPI, showDatabase }) => (
-  <NavDropdown icon="users-cog" name={<span style={{ color: 'white' }}>Administração</span>} id="admin-menu" data-cy="adminMenu">
+export const AdminMenu = ({showOpenAPI, showDatabase}) => (
+  <NavDropdown icon="users-cog" name={<span style={{color: 'white'}}>Administração</span>} id="admin-menu"
+               data-cy="adminMenu">
     {adminMenuItems()}
     {showOpenAPI && openAPIItem()}
 

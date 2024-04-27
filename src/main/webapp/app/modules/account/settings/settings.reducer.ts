@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import { getSession } from 'app/shared/reducers/authentication';
-import { AppThunk } from 'app/config/store';
-import { serializeAxiosError } from 'app/shared/reducers/reducer.utils';
+import {getSession} from 'app/shared/reducers/authentication';
+import {AppThunk} from 'app/config/store';
+import {serializeAxiosError} from 'app/shared/reducers/reducer.utils';
 
 const initialState = {
   loading: false,
@@ -57,7 +57,7 @@ export const SettingsSlice = createSlice({
   },
 });
 
-export const { reset } = SettingsSlice.actions;
+export const {reset} = SettingsSlice.actions;
 
 // Reducer
 export default SettingsSlice.reducer;

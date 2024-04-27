@@ -25,6 +25,7 @@ Developement Ribbon
   z-index: 99999;
   pointer-events: none;
   opacity: 0.75;
+
   a {
     color: #fff;
     display: block;
@@ -60,10 +61,12 @@ Navbar styles
   &:hover {
     text-decoration: none;
   }
+
   .brand-icon {
     height: 35px;
     width: auto;
     display: inline-block;
+
     img {
       height: 45px;
     }
@@ -73,6 +76,7 @@ Navbar styles
 .brand-title {
   font-size: 24px;
   color: $header-color;
+
   &:hover {
     color: $header-color-hover;
     text-decoration: none;

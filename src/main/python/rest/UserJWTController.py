@@ -33,7 +33,7 @@ class UserJWTResource(Resource):
         if bcrypt.checkpw(password.encode('utf8'), user.password_hash.encode('utf8')) is not True:
             return {"message": "Nome de usuário e/ou senha inválidos"}, 401
         if not user.get_activated():
-            return {"message": "O usuário não está ativo. Por favor, contate-nos pelo número (11) 99999-9999 para ativarmos sua conta"}, 500
+            return {"message": "O usuário não está ativo. Por favor, contate-nos pelo número (12) 98821-2594 para ativarmos sua conta"}, 500
         token_expiry = timedelta(hours=3)
         if remember_me:
             token_expiry = timedelta(hours=24)

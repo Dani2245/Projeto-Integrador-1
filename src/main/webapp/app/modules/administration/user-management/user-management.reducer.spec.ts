@@ -4,17 +4,17 @@ import thunk from 'redux-thunk';
 import sinon from 'sinon';
 
 import userManagement, {
-  getUsers,
-  getUsersAsAdmin,
+  createUser,
+  deleteUser,
   getRoles,
   getUser,
-  createUser,
-  updateUser,
-  deleteUser,
+  getUsers,
+  getUsersAsAdmin,
   reset,
+  updateUser,
 } from './user-management.reducer';
-import { defaultValue } from 'app/shared/model/user.model';
-import { AUTHORITIES } from 'app/config/constants';
+import {defaultValue} from 'app/shared/model/user.model';
+import {AUTHORITIES} from 'app/config/constants';
 
 describe('User management reducer tests', () => {
   const username = process.env.E2E_USERNAME ?? 'admin';
@@ -42,19 +42,19 @@ describe('User management reducer tests', () => {
 
   function testMultipleTypes(types, payload, testFunction, error?) {
     types.forEach(e => {
-      testFunction(userManagement(undefined, { type: e, payload, error }));
+      testFunction(userManagement(undefined, {type: e, payload, error}));
     });
   }
 
   describe('Common', () => {
     it('should return the initial state', () => {
-      testInitialState(userManagement(undefined, { type: 'unknown' }));
+      testInitialState(userManagement(undefined, {type: 'unknown'}));
     });
   });
 
   describe('Requests', () => {
     it('should not modify the current state', () => {
-      testInitialState(userManagement(undefined, { type: getRoles.pending.type }));
+      testInitialState(userManagement(undefined, {type: getRoles.pending.type}));
     });
 
     it('should set state to loading', () => {
@@ -90,7 +90,7 @@ describe('User management reducer tests', () => {
           updateUser.rejected.type,
           deleteUser.rejected.type,
         ],
-        { message: 'something happened' },
+        {message: 'something happened'},
         state => {
           expect(state).toMatchObject({
             loading: false,
@@ -99,16 +99,16 @@ describe('User management reducer tests', () => {
             errorMessage: 'error happened',
           });
         },
-        { message: 'error happened' }
+        {message: 'error happened'}
       );
     });
   });
 
   describe('Success', () => {
     it('should update state according to a successful fetch users request', () => {
-      const headers = { ['x-total-count']: 42 };
-      const payload = { data: 'some handsome users', headers };
-      const toTest = userManagement(undefined, { type: getUsers.fulfilled.type, payload });
+      const headers = {['x-total-count']: 42};
+      const payload = {data: 'some handsome users', headers};
+      const toTest = userManagement(undefined, {type: getUsers.fulfilled.type, payload});
 
       expect(toTest).toMatchObject({
         loading: false,
@@ -118,8 +118,8 @@ describe('User management reducer tests', () => {
     });
 
     it('should update state according to a successful fetch user request', () => {
-      const payload = { data: 'some handsome user' };
-      const toTest = userManagement(undefined, { type: getUser.fulfilled.type, payload });
+      const payload = {data: 'some handsome user'};
+      const toTest = userManagement(undefined, {type: getUser.fulfilled.type, payload});
 
       expect(toTest).toMatchObject({
         loading: false,
@@ -128,8 +128,8 @@ describe('User management reducer tests', () => {
     });
 
     it('should update state according to a successful fetch role request', () => {
-      const payload = { data: [AUTHORITIES.ADMIN] };
-      const toTest = userManagement(undefined, { type: getRoles.fulfilled.type, payload });
+      const payload = {data: [AUTHORITIES.ADMIN]};
+      const toTest = userManagement(undefined, {type: getRoles.fulfilled.type, payload});
 
       expect(toTest).toMatchObject({
         loading: false,
@@ -138,7 +138,7 @@ describe('User management reducer tests', () => {
     });
 
     it('should set state to successful update', () => {
-      testMultipleTypes([createUser.fulfilled.type, updateUser.fulfilled.type], { data: 'some handsome user' }, types => {
+      testMultipleTypes([createUser.fulfilled.type, updateUser.fulfilled.type], {data: 'some handsome user'}, types => {
         expect(types).toMatchObject({
           updating: false,
           updateSuccess: true,
@@ -148,7 +148,7 @@ describe('User management reducer tests', () => {
     });
 
     it('should set state to successful update with an empty user', () => {
-      const toTest = userManagement(undefined, { type: deleteUser.fulfilled.type });
+      const toTest = userManagement(undefined, {type: deleteUser.fulfilled.type});
 
       expect(toTest).toMatchObject({
         updating: false,
@@ -181,7 +181,7 @@ describe('User management reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});
@@ -216,7 +216,7 @@ describe('User management reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(getUsersAsAdmin({ page: 1, size: 20, sort: 'id,desc' }));
+      await store.dispatch(getUsersAsAdmin({page: 1, size: 20, sort: 'id,desc'}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
     });
@@ -246,7 +246,7 @@ describe('User management reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(getUsers({ page: 1, size: 20, sort: 'id,desc' }));
+      await store.dispatch(getUsers({page: 1, size: 20, sort: 'id,desc'}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
     });
@@ -313,7 +313,7 @@ describe('User management reducer tests', () => {
           payload: resolvedObject,
         },
       ];
-      await store.dispatch(updateUser({ login: username }));
+      await store.dispatch(updateUser({login: username}));
       expect(store.getActions()[0]).toMatchObject(expectedActions[0]);
       expect(store.getActions()[1]).toMatchObject(expectedActions[1]);
       expect(store.getActions()[2]).toMatchObject(expectedActions[2]);

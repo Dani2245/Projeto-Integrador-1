@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Col, FormText } from 'reactstrap';
-import { ValidatedField, ValidatedForm, isEmail } from 'react-jhipster';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {useEffect, useState} from 'react';
+import {Link, RouteComponentProps} from 'react-router-dom';
+import {Button, Col, FormText, Row} from 'reactstrap';
+import {isEmail, ValidatedField, ValidatedForm} from 'react-jhipster';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { getUser, getRoles, updateUser, createUser, reset } from './user-management.reducer';
-import { useAppDispatch, useAppSelector } from 'app/config/store';
+import {createUser, getRoles, getUser, reset, updateUser} from './user-management.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
 
 export const UserManagementUpdate = (props: RouteComponentProps<{ login: string }>) => {
   const [isNew] = useState(!props.match.params || !props.match.params.login);
@@ -55,7 +55,8 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
             <p>Carregando...</p>
           ) : (
             <ValidatedForm onSubmit={saveUser} defaultValues={user}>
-              {user.id ? <ValidatedField type="text" name="id" required readOnly label="ID" validate={{ required: true }} /> : null}
+              {user.id ?
+                <ValidatedField type="text" name="id" required readOnly label="ID" validate={{required: true}}/> : null}
               <ValidatedField
                 type="text"
                 name="login"
@@ -146,7 +147,7 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
                   },
                 }}
               ></ValidatedField> */}
-              <ValidatedField type="checkbox" name="activated" check value={true} disabled={!user.id} label="Ativado" />
+              <ValidatedField type="checkbox" name="activated" check value={true} disabled={!user.id} label="Ativado"/>
               <ValidatedField type="select" name="authorities" multiple label="Perfis">
                 {authorities.map(role => (
                   <option value={role} key={role}>
@@ -155,13 +156,13 @@ export const UserManagementUpdate = (props: RouteComponentProps<{ login: string 
                 ))}
               </ValidatedField>
               <Button tag={Link} to="/admin/user-management" replace color="info">
-                <FontAwesomeIcon icon="arrow-left" />
+                <FontAwesomeIcon icon="arrow-left"/>
                 &nbsp;
                 <span className="d-none d-md-inline">Voltar</span>
               </Button>
               &nbsp;
               <Button color="primary" type="submit" disabled={isInvalid || updating}>
-                <FontAwesomeIcon icon="save" />
+                <FontAwesomeIcon icon="save"/>
                 &nbsp; Salvar
               </Button>
             </ValidatedForm>

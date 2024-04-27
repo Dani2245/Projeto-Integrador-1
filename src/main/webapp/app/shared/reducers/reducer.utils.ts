@@ -1,13 +1,13 @@
 import {
+  ActionReducerMapBuilder,
   AnyAction,
   AsyncThunk,
-  ActionReducerMapBuilder,
   createSlice,
   SerializedError,
   SliceCaseReducers,
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
+import {AxiosError} from 'axios';
 
 /**
  * Model for redux actions with pagination
@@ -64,7 +64,7 @@ export const serializeAxiosError = (value: any): AxiosError | SerializedError =>
       return simpleError;
     }
   }
-  return { message: String(value) };
+  return {message: String(value)};
 };
 
 export interface EntityState<T> {
@@ -83,12 +83,12 @@ export interface EntityState<T> {
  * common reducers and matchers used by entities
  */
 export const createEntitySlice = <T, Reducers extends SliceCaseReducers<EntityState<T>>>({
-  name = '',
-  initialState,
-  reducers,
-  extraReducers,
-  skipRejectionHandling,
-}: {
+                                                                                           name = '',
+                                                                                           initialState,
+                                                                                           reducers,
+                                                                                           extraReducers,
+                                                                                           skipRejectionHandling,
+                                                                                         }: {
   name: string;
   initialState: EntityState<T>;
   reducers?: ValidateSliceCaseReducers<EntityState<T>, Reducers>;

@@ -29,6 +29,7 @@ sqlalchemy = "1.4.40"
 typing-extensions = "4.3.0"
 werkzeug = "2.1.2"
 mysql-connector-python = "8.1.0"
+flask-cors = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 taskipy = "^1.12.0"

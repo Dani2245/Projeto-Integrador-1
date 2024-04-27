@@ -3,7 +3,7 @@ import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
 
-import profile, { getProfile } from './application-profile';
+import profile, {getProfile} from './application-profile';
 
 describe('Profile reducer tests', () => {
   const initialState = {
@@ -13,7 +13,7 @@ describe('Profile reducer tests', () => {
   };
   describe('Common tests', () => {
     it('should return the initial state', () => {
-      const toTest = profile(undefined, { type: '' });
+      const toTest = profile(undefined, {type: ''});
       expect(toTest).toEqual(initialState);
     });
 
@@ -25,7 +25,7 @@ describe('Profile reducer tests', () => {
         },
       };
 
-      expect(profile(undefined, { type: getProfile.fulfilled.type, payload })).toEqual({
+      expect(profile(undefined, {type: getProfile.fulfilled.type, payload})).toEqual({
         ribbonEnv: 'awesome ribbon stuff',
         inProduction: true,
         isOpenAPIEnabled: false,
@@ -40,7 +40,7 @@ describe('Profile reducer tests', () => {
         },
       };
 
-      expect(profile(undefined, { type: getProfile.fulfilled.type, payload })).toEqual({
+      expect(profile(undefined, {type: getProfile.fulfilled.type, payload})).toEqual({
         ribbonEnv: 'awesome ribbon stuff',
         inProduction: false,
         isOpenAPIEnabled: true,
@@ -51,7 +51,7 @@ describe('Profile reducer tests', () => {
   describe('Actions', () => {
     let store;
 
-    const resolvedObject = { value: 'whatever' };
+    const resolvedObject = {value: 'whatever'};
     beforeEach(() => {
       const mockStore = configureStore([thunk]);
       store = mockStore({});

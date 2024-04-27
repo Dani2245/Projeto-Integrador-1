@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getEntity, deleteEntity } from './servico.reducer';
+import {useAppDispatch, useAppSelector} from 'app/config/store';
+import {deleteEntity, getEntity} from './servico.reducer';
 
 export const ServicoDeleteDialog = (props: RouteComponentProps<{ id: string }>) => {
   const [loadModal, setLoadModal] = useState(false);
@@ -37,17 +37,19 @@ export const ServicoDeleteDialog = (props: RouteComponentProps<{ id: string }>) 
   return (
     <Modal isOpen toggle={handleClose}>
       <ModalHeader toggle={handleClose} data-cy="servicoDeleteDialogHeading">
-        Confirm delete operation
+        Confirmar a operação de exclusão
       </ModalHeader>
-      <ModalBody id="projetoIntegradorUmApp.servico.delete.question">Are you sure you want to delete this Servico?</ModalBody>
+      <ModalBody id="projetoIntegradorUmApp.servico.delete.question">Tem certeza que deseja excluir esse
+        Serviço?</ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={handleClose}>
-          <FontAwesomeIcon icon="ban" />
-          &nbsp; Cancel
+          <FontAwesomeIcon icon="ban"/>
+          &nbsp; Cancelar
         </Button>
-        <Button id="jhi-confirm-delete-servico" data-cy="entityConfirmDeleteButton" color="danger" onClick={confirmDelete}>
-          <FontAwesomeIcon icon="trash" />
-          &nbsp; Delete
+        <Button id="jhi-confirm-delete-servico" data-cy="entityConfirmDeleteButton" color="danger"
+                onClick={confirmDelete}>
+          <FontAwesomeIcon icon="trash"/>
+          &nbsp; Apagar
         </Button>
       </ModalFooter>
     </Modal>

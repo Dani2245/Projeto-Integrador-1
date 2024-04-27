@@ -64,6 +64,8 @@ class ManagedUserAccountRegister(Resource):
         new_user = User()
         user_role = Authority().get_by_name(AuthoritiesConstants.USER)
         new_user.roles.append(user_role)
+        new_user.first_name = managed_user["firstName"]
+        new_user.last_name = managed_user["lastName"]
         try:
             managed_user_data = managed_user_schema.load(managed_user, instance=new_user)
         except ValidationError as err:
