@@ -52,88 +52,12 @@ export const AgendamentoUpdate = (props: RouteComponentProps<{ id: string }>) =>
     return response.data;
   };
 
-  const validateTime = (time) => {
-    const date = new Date(time);
-    const day = date.getDay();
-    const hour = date.getHours();
-
-    // Check if the day is between Tuesday (2) and Saturday (6)
-    if (day >= 2 && day <= 6) {
-      // Check if the time is between 9 AM and 6 PM
-      if (hour >= 9 && hour <= 18) {
-        return true;
-      } else {
-        return "O agendamento precisa ser feito entre 9 AM e 6 PM.";
-      }
-    } else {
-      return "O agendamento precisa ser feito de terça-feira a sábado.";
-    }
-  };
-  const validateFutureDate = (dateTime) => {
-    const now = new Date();
-    const selectedDateTime = new Date(dateTime);
-    if (selectedDateTime > now) {
-      return true;
-    } else {
-      return "O agendamento precisa ser feito em uma data futura.";
-    }
-  };
-
-  const validateOverlap = async (dateTime, duration) => {
-    const selectedDateTime = new Date(dateTime);
-    const durationInMilliseconds = parseInt(duration, 10) * 60000; // Convert duration to number
-    const selectedEndDateTime = new Date(selectedDateTime.getTime() + durationInMilliseconds);
-    const appointments = await fetchAppointments();
-
-    // Sort appointments by start time
-    appointments.sort((a, b) => new Date(a.dataHora).getTime() - new Date(b.dataHora).getTime());
-
-    for (let i = 0; i < appointments.length; i++) {
-      const appointmentDateTime = new Date(appointments[i].dataHora);
-      const appointmentEndDateTime = new Date(appointmentDateTime.getTime() + appointments[i].servico.duracao * 60000);
-
-      // Check if the new appointment overlaps with the current appointment
-      if ((selectedDateTime >= appointmentDateTime && selectedDateTime < appointmentEndDateTime) ||
-        (selectedEndDateTime > appointmentDateTime && selectedEndDateTime <= appointmentEndDateTime)) {
-        return "Já existe um agendamento marcado para esse horário.";
-      }
-
-      // Check if the new appointment is in between two appointments
-      // if (i < appointments.length - 1) {
-      //   const nextAppointmentDateTime = new Date(appointments[i + 1].dataHora);
-      //   const nextAppointmentEndDateTime = new Date(nextAppointmentDateTime.getTime() + appointments[i + 1].servico.duracao * 60000);
-      //   if (selectedDateTime >= appointmentEndDateTime && selectedEndDateTime <= nextAppointmentDateTime) {
-      //     return "O serviço selecionado não pode ser concluído entre dois agendamentos já existentes.";
-      //   }
-      // }
-    }
-
-    return true;
-  };
-
   const getServiceById = (id) => {
     return servicos.find(it => it.id.toString() === id.toString());
   };
 
-  const saveEntity = async values => {
+  const saveEntity = values => {
     const service = getServiceById(values.servico);
-    const timeValidationResult = validateTime(values.dataHora);
-    if (timeValidationResult !== true) {
-      alert(timeValidationResult);
-      return;
-    }
-
-    const dateValidationResult = validateFutureDate(values.dataHora);
-    if (dateValidationResult !== true) {
-      alert(dateValidationResult);
-      return;
-    }
-
-    const overlapValidationResult = await validateOverlap(values.dataHora, service.duracao);
-    if (overlapValidationResult !== true) {
-      alert(overlapValidationResult);
-      return;
-    }
 
     const entity = {
       ...agendamentoEntity,

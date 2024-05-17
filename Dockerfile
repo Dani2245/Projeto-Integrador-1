@@ -17,7 +17,7 @@ RUN pip install poetry
 RUN poetry install
 
 # Expose the port your application runs on
-EXPOSE 9000
+EXPOSE 8080 9000 9001 9060
 
 # Specify the command to run your application
 CMD ["npm","run","pyhipster"]
