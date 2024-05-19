@@ -47,6 +47,8 @@ module.exports = async options =>
       static: {
         directory: './target/classes/static/',
       },
+      allowedHosts: 'all',
+      public: octopus-app-onpsu.ondigitalocean.app,
       port: 9060,
       proxy: [
         {
